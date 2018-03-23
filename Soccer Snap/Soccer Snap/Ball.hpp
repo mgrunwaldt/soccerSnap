@@ -9,6 +9,15 @@
 #ifndef Ball_hpp
 #define Ball_hpp
 
-#include <stdio.h>
+#include "Gem.hpp"
+
+class Ball: public Gem{
+    
+    
+public:
+    void load(Output* output, int w, int h=0);
+private:
+    
+};
 
 #endif /* Ball_hpp */

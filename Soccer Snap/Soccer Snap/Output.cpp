@@ -20,11 +20,11 @@ Output::~Output(){
 
 bool Output::init(){
     if(SDL_Init(SDL_INIT_EVERYTHING)==0){
-        window = SDL_CreateWindow("Title", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 640, SDL_WINDOW_SHOWN);
+        window = SDL_CreateWindow("Title", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1072, 670, SDL_WINDOW_ALLOW_HIGHDPI);
         if(window){
             renderer = SDL_CreateRenderer(window, -1, 0);
             if(renderer){
-                SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+                SDL_SetRenderDrawColor(renderer, 0, 178, 85, 255);
                 SDL_RenderClear(renderer);
                 return true;
             }
@@ -38,6 +38,7 @@ void Output::clearScreen(){
 }
 
 void Output::drawScreen(){
+
     SDL_RenderPresent(renderer);
    
 }
@@ -85,6 +86,7 @@ void Output::addSprite(char* name,int x, int y, int width, int height){
         height = (width*originalHeight / originalWidth);
     }
     destRect.h = height;
+   // destRect.w = originalWidth;
     SDL_RenderCopy(renderer, texture, NULL, &destRect);
 
 }

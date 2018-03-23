@@ -20,11 +20,9 @@ Game::~Game(){
 void Game::init(){
     output = new Output();
     input = new Input();
-    prueba = new Gem();
-    prueba->load(output,"Italy", 70);
-
-    prueba2 = new Gem();
-    prueba2->load(output,"Italy", 70);
+    
+    field = new Field(output);
+    field->loadField();
     
     if(output->init()){
 
@@ -47,15 +45,14 @@ void Game::handleEvents(){
 }
 
 void Game::update(){
-    prueba->update();
+
 }
 
 void Game::render(){
     output->clearScreen();
     //dibujo todo
-    
-    prueba->draw();
-    prueba2->draw();
+    field->drawField();
+
 
     
     output->drawScreen();

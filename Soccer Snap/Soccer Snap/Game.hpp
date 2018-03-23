@@ -11,7 +11,8 @@
 
 #include "Output.hpp"
 #include "Input.hpp"
-#include "Gem.hpp"
+#include "Field.hpp"
+
 class Game{
 public:
     Game();
@@ -30,7 +31,6 @@ private:
     bool isRunning;
     Output *output;
     Input * input;
-    Gem* prueba;
-    Gem* prueba2;
+    Field * field;
 };
 #endif /* Game_hpp */

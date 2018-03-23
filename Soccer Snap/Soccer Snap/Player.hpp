@@ -9,6 +9,15 @@
 #ifndef Player_hpp
 #define Player_hpp
 
-#include <stdio.h>
+#include "Gem.hpp"
+
+class Player: public Gem{
+    
+    
+public:
+    void load(Output* output, int w, int h=0);
+private:
+   
+};
 
 #endif /* Player_hpp */

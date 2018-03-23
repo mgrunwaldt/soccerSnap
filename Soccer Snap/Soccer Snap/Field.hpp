@@ -8,20 +8,26 @@
 
 #ifndef Field_hpp
 #define Field_hpp
-
-#include "Game.hpp"
+#include "Output.hpp"
 #include "Gem.hpp"
+#include "Player.hpp"
+#include "Goalkeeper.hpp"
+#include "Rival.hpp"
+#include "Referee.hpp"
+#include "Ball.hpp"
+
 
 class Field{
 public:
     
-    Field();
+    Field(Output* o);
     ~Field();
     
-    void LoadField();
-    void DrawField();
+    void loadField();
+    void drawField();
 private:
-    Gem* field[8][8];
+    Gem* gems[8][8];
+    Output *output;
     
     
 };

@@ -7,3 +7,8 @@
 //
 
 #include "Ball.hpp"
+
+void Ball::load(Output*output, int w, int h){
+    spriteName = "Ball@2x";
+    Gem::load(output, w);
+}

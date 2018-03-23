@@ -7,3 +7,8 @@
 //
 
 #include "Referee.hpp"
+
+void Referee::load(Output*output, int w, int h){
+    spriteName = "Referee";
+    Gem::load(output, w);
+}

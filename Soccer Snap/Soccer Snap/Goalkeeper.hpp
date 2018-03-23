@@ -9,6 +9,16 @@
 #ifndef Goalkeeper_hpp
 #define Goalkeeper_hpp
 
-#include <stdio.h>
+#include "Gem.hpp"
+
+class Goalkeeper: public Gem{
+    
+    
+public:
+    void load(Output* output, int w, int h=0);
+private:
+    
+};
+
 
 #endif /* Goalkeeper_hpp */

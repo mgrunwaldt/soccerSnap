@@ -9,6 +9,14 @@
 #ifndef Rival_hpp
 #define Rival_hpp
 
-#include <stdio.h>
+#include "Gem.hpp"
 
+class Rival: public Gem{
+    
+    
+public:
+    void load(Output* output, int w, int h=0);
+private:
+    
+};
 #endif /* Rival_hpp */

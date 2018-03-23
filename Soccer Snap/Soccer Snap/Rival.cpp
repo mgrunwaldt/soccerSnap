@@ -7,3 +7,7 @@
 //
 
 #include "Rival.hpp"
+
+void Rival::load(Output*output, int w, int h){
+    Gem::load(output, w);
+}

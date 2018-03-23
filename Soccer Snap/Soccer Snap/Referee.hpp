@@ -9,6 +9,16 @@
 #ifndef Referee_hpp
 #define Referee_hpp
 
-#include <stdio.h>
+#include "Gem.hpp"
+
+class Referee: public Gem{
+    
+    
+public:
+    void load(Output* output, int w, int h=0);
+private:
+    
+};
+
 
 #endif /* Referee_hpp */

@@ -16,17 +16,21 @@ class Gem: public GameObject{
 
     
 public:
-    virtual void draw();
-    virtual void update();
-    virtual void clean();
-    void load(Output* output,char* sprite, int w, int h=0);
+    void draw();
+    void update();
+    void clean();
+    void setPos(int gridX, int gridY);
+    virtual void load(Output* output, int w, int h=0);
+    void setSprite(char* spriteName);
+    
     ~Gem();
 private:
-    char* spriteName;
     Output* outputFacade;
     int x;
     int y;
     int width;
     int height;
+protected:
+    char* spriteName;
 };
 #endif /* Gem_hpp */
