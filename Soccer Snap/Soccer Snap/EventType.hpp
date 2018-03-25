@@ -11,12 +11,8 @@
 
 enum class EventType{
     Exit,
-    SwipeLeft,
-    SwipeRight,
-    SwipeUp,
-    SwipeDown,
-    Click,
-    DoubleClick,
+    MouseDown,
+    MouseUp,
     Unknown
 };
 #endif /* EventType_hpp */

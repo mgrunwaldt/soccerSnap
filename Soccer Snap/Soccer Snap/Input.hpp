@@ -11,9 +11,11 @@
 
 #include "SDL2/SDL.h"
 #include "EventType.hpp"
+#include "Point.hpp"
 class Input{
 public:
     EventType checkEvent();
+    Point getMousePosition();
     
 private:
     

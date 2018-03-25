@@ -25,9 +25,17 @@ public:
     
     void addSprite(char* name,int x, int y, int width, int height=0);
     
+    
+    int getRes();
 private:
+    enum resolutions{
+        SD = 1,
+        HIGH = 2
+    };
     SDL_Window* window;
     SDL_Renderer* renderer;
+    bool screenIsHd();
+    int winRes;
     void loadTexture(char* name);
     SDL_Texture* getTexture(char* name);
     std::map<std::string, SDL_Texture*> loadedTextures;

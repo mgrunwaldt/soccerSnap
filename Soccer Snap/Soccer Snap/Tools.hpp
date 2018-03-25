@@ -18,5 +18,6 @@ public:
     static void delay(Uint32 ms){
         SDL_Delay(ms);
     };
+
 };
 #endif /* Tools_hpp */

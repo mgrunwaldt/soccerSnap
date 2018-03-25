@@ -15,7 +15,7 @@
 #include "Rival.hpp"
 #include "Referee.hpp"
 #include "Ball.hpp"
-
+#include "Point.hpp"
 
 class Field{
 public:
@@ -25,6 +25,13 @@ public:
     
     void loadField();
     void drawField();
+    
+    void mouseDown(Point p);
+    void mouseUp(Point p);
+    
+    static const int FIELD_X = 280;
+    static const int FIELD_Y = 72;
+    static const int FIELD_WIDTH = 512;
 private:
     Gem* gems[8][8];
     Output *output;

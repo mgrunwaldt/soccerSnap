@@ -12,6 +12,15 @@
 #include "Output.hpp"
 #include "Input.hpp"
 #include "Field.hpp"
+#include "Tools.hpp"
+#include "Point.hpp"
+
+enum ScreenComponent{
+    Canvas,
+    Home,
+    Pause,
+    Other
+};
 
 class Game{
 public:
@@ -19,6 +28,7 @@ public:
     ~Game();
     
     void init();
+    void run();
     void handleEvents();
     void update();
     void render();
@@ -32,5 +42,14 @@ private:
     Output *output;
     Input * input;
     Field * field;
+    
+    void homeUp();
+    void homeDown();
+    void pauseUp();
+    void pauseDown();
+    
+    
+    ScreenComponent getClickedArea(Point p);
 };
+
 #endif /* Game_hpp */

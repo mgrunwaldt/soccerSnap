@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		44221BCC206312C00088EB81 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44221BCA206312C00088EB81 /* Game.cpp */; };
+		445EDAF6206768C400D062E1 /* MainMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 445EDAF4206768C400D062E1 /* MainMenu.cpp */; };
+		445EDAF92067692500D062E1 /* Loader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 445EDAF72067692500D062E1 /* Loader.cpp */; };
 		4496FD852063368B003F8C67 /* Tools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4496FD832063368B003F8C67 /* Tools.cpp */; };
 		4496FD882063E99C003F8C67 /* Field.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4496FD862063E99C003F8C67 /* Field.cpp */; };
 		4496FD8B20642BDD003F8C67 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4496FD8920642BDD003F8C67 /* Player.cpp */; };
@@ -43,6 +45,11 @@
 		445EDAEE20647DAB00D062E1 /* Ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Ball.png; path = assets/Ball.png; sourceTree = "<group>"; };
 		445EDAEF20647DAB00D062E1 /* Goalkeeper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Goalkeeper.png; path = assets/Goalkeeper.png; sourceTree = "<group>"; };
 		445EDAF020647DAB00D062E1 /* Referee.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Referee.png; path = assets/Referee.png; sourceTree = "<group>"; };
+		445EDAF220670F8500D062E1 /* Point.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Point.hpp; sourceTree = "<group>"; };
+		445EDAF4206768C400D062E1 /* MainMenu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainMenu.cpp; sourceTree = "<group>"; };
+		445EDAF5206768C400D062E1 /* MainMenu.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MainMenu.hpp; sourceTree = "<group>"; };
+		445EDAF72067692500D062E1 /* Loader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Loader.cpp; sourceTree = "<group>"; };
+		445EDAF82067692500D062E1 /* Loader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Loader.hpp; sourceTree = "<group>"; };
 		4496FD832063368B003F8C67 /* Tools.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tools.cpp; sourceTree = "<group>"; };
 		4496FD842063368B003F8C67 /* Tools.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Tools.hpp; sourceTree = "<group>"; };
 		4496FD862063E99C003F8C67 /* Field.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Field.cpp; sourceTree = "<group>"; };
@@ -89,6 +96,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		445EDAFA2067692C00D062E1 /* Windows */ = {
+			isa = PBXGroup;
+			children = (
+				44221BCA206312C00088EB81 /* Game.cpp */,
+				44221BCB206312C00088EB81 /* Game.hpp */,
+				4496FD862063E99C003F8C67 /* Field.cpp */,
+				4496FD872063E99C003F8C67 /* Field.hpp */,
+				445EDAF4206768C400D062E1 /* MainMenu.cpp */,
+				445EDAF5206768C400D062E1 /* MainMenu.hpp */,
+				445EDAF72067692500D062E1 /* Loader.cpp */,
+				445EDAF82067692500D062E1 /* Loader.hpp */,
+			);
+			name = Windows;
+			sourceTree = "<group>";
+		};
 		4496FD9820642C21003F8C67 /* Gems */ = {
 			isa = PBXGroup;
 			children = (
@@ -128,14 +150,11 @@
 		44BED9492062D64F00D9585F /* Soccer Snap */ = {
 			isa = PBXGroup;
 			children = (
+				445EDAFA2067692C00D062E1 /* Windows */,
 				44BED9682062D94600D9585F /* Objects */,
 				44BED95C2062D78C00D9585F /* Helpers */,
 				44BED9562062D75100D9585F /* assets */,
 				44BED94A2062D64F00D9585F /* main.cpp */,
-				44221BCA206312C00088EB81 /* Game.cpp */,
-				44221BCB206312C00088EB81 /* Game.hpp */,
-				4496FD862063E99C003F8C67 /* Field.cpp */,
-				4496FD872063E99C003F8C67 /* Field.hpp */,
 			);
 			path = "Soccer Snap";
 			sourceTree = "<group>";
@@ -176,6 +195,7 @@
 				44221BD120631E230088EB81 /* EventType.hpp */,
 				4496FD832063368B003F8C67 /* Tools.cpp */,
 				4496FD842063368B003F8C67 /* Tools.hpp */,
+				445EDAF220670F8500D062E1 /* Point.hpp */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -249,6 +269,7 @@
 			files = (
 				4496FD8B20642BDD003F8C67 /* Player.cpp in Sources */,
 				44BED96E2062DF6300D9585F /* Gem.cpp in Sources */,
+				445EDAF92067692500D062E1 /* Loader.cpp in Sources */,
 				44BED9662062D83E00D9585F /* Input.cpp in Sources */,
 				44BED94B2062D64F00D9585F /* main.cpp in Sources */,
 				4496FD852063368B003F8C67 /* Tools.cpp in Sources */,
@@ -256,6 +277,7 @@
 				4496FD9720642C12003F8C67 /* Goalkeeper.cpp in Sources */,
 				44221BCC206312C00088EB81 /* Game.cpp in Sources */,
 				4496FD882063E99C003F8C67 /* Field.cpp in Sources */,
+				445EDAF6206768C400D062E1 /* MainMenu.cpp in Sources */,
 				4496FD9120642BF5003F8C67 /* Referee.cpp in Sources */,
 				4496FD8E20642BE9003F8C67 /* Rival.cpp in Sources */,
 				4496FD9420642C04003F8C67 /* Ball.cpp in Sources */,

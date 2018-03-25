@@ -22,6 +22,7 @@ public:
     void setPos(int gridX, int gridY);
     virtual void load(Output* output, int w, int h=0);
     void setSprite(char* spriteName);
+    bool isSelected();
     
     ~Gem();
 private:
@@ -30,6 +31,7 @@ private:
     int y;
     int width;
     int height;
+    bool selected;
 protected:
     char* spriteName;
 };

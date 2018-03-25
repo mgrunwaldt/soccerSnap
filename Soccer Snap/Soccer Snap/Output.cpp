@@ -38,6 +38,7 @@ void Output::clearScreen(){
 }
 
 void Output::drawScreen(){
+    
 
     SDL_RenderPresent(renderer);
    
@@ -71,21 +72,43 @@ SDL_Texture* Output::getTexture(char* name){
     return texture;
 }
 
+bool Output::screenIsHd(){
+    int w1, w2, h1, h2;
+    SDL_GL_GetDrawableSize(window, &w1, &h1);
+    SDL_GetWindowSize(window, &w2, &h2);
+    if(w1>w2){
+        return true;
+    }
+    return false;;
+}
+
+int Output::getRes(){
+    if(screenIsHd()){
+        winRes = HIGH;
+    }
+    else winRes = SD;
+    return winRes;
+}
+
 void Output::addSprite(char* name,int x, int y, int width, int height){
     SDL_Texture * texture = getTexture(name);
     SDL_Rect destRect;
-
-    destRect.x = x;
-    destRect.y = y;
+   
+    winRes = getRes();
     
-    destRect.w = width;
+    destRect.x = x*winRes;
+    destRect.y = y*winRes;
+    
+    
+    
+    destRect.w = width*winRes;
     if(height == 0){
         int originalWidth = 0;
         int originalHeight = 0;
         SDL_QueryTexture(texture, NULL, NULL, &originalWidth, &originalHeight);
         height = (width*originalHeight / originalWidth);
     }
-    destRect.h = height;
+    destRect.h = height*winRes;
    // destRect.w = originalWidth;
     SDL_RenderCopy(renderer, texture, NULL, &destRect);
 

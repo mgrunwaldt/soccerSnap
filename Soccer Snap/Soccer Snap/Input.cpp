@@ -15,8 +15,18 @@ EventType Input::checkEvent(){
         case SDL_QUIT:
             return EventType::Exit;
             break;
+        case SDL_MOUSEBUTTONDOWN:
+            return EventType::MouseDown;
+        case SDL_MOUSEBUTTONUP:
+            return EventType::MouseUp;
         default:
             return EventType::Unknown;
             break;
     }
+}
+
+Point Input::getMousePosition(){
+    int x, y;
+    SDL_GetMouseState(&x, &y);
+    return Point(x, y);
 }
