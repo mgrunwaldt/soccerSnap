@@ -43,7 +43,6 @@
 		44221BCA206312C00088EB81 /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
 		44221BCB206312C00088EB81 /* Game.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Game.hpp; sourceTree = "<group>"; };
 		44221BD120631E230088EB81 /* EventType.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EventType.hpp; sourceTree = "<group>"; };
-		445EDAED20646F8600D062E1 /* Uruguay_Shirt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Uruguay_Shirt.png; path = assets/Uruguay_Shirt.png; sourceTree = "<group>"; };
 		445EDAEE20647DAB00D062E1 /* Ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Ball.png; path = assets/Ball.png; sourceTree = "<group>"; };
 		445EDAEF20647DAB00D062E1 /* Goalkeeper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Goalkeeper.png; path = assets/Goalkeeper.png; sourceTree = "<group>"; };
 		445EDAF020647DAB00D062E1 /* Referee.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Referee.png; path = assets/Referee.png; sourceTree = "<group>"; };
@@ -63,6 +62,18 @@
 		445EDB0720684F6000D062E1 /* PlayOut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PlayOut.png; path = assets/PlayOut.png; sourceTree = "<group>"; };
 		445EDB0820684F6000D062E1 /* PlayOver.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PlayOver.png; path = assets/PlayOver.png; sourceTree = "<group>"; };
 		445EDB092068987A00D062E1 /* CountryBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CountryBack.png; path = assets/CountryBack.png; sourceTree = "<group>"; };
+		445EDB0A2068AADB00D062E1 /* MenuSeparator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MenuSeparator.png; path = assets/MenuSeparator.png; sourceTree = "<group>"; };
+		445EDB0B2068ACC700D062E1 /* PickTeam.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PickTeam.png; path = assets/PickTeam.png; sourceTree = "<group>"; };
+		445EDB0D2068AFB800D062E1 /* BrazilLabel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BrazilLabel.png; path = assets/BrazilLabel.png; sourceTree = "<group>"; };
+		445EDB0E2068AFB800D062E1 /* EnglandLabel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EnglandLabel.png; path = assets/EnglandLabel.png; sourceTree = "<group>"; };
+		445EDB0F2068AFB800D062E1 /* PortugalLabel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PortugalLabel.png; path = assets/PortugalLabel.png; sourceTree = "<group>"; };
+		445EDB102068AFB800D062E1 /* RussiaLabel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RussiaLabel.png; path = assets/RussiaLabel.png; sourceTree = "<group>"; };
+		445EDB112068AFB800D062E1 /* UruguayLabel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = UruguayLabel.png; path = assets/UruguayLabel.png; sourceTree = "<group>"; };
+		445EDB122068B38400D062E1 /* BrazilMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BrazilMenu.png; path = assets/BrazilMenu.png; sourceTree = "<group>"; };
+		445EDB132068B38400D062E1 /* EnglandMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EnglandMenu.png; path = assets/EnglandMenu.png; sourceTree = "<group>"; };
+		445EDB142068B38400D062E1 /* PortugalMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PortugalMenu.png; path = assets/PortugalMenu.png; sourceTree = "<group>"; };
+		445EDB152068B38400D062E1 /* RussiaMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RussiaMenu.png; path = assets/RussiaMenu.png; sourceTree = "<group>"; };
+		445EDB162068B38400D062E1 /* UruguayMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = UruguayMenu.png; path = assets/UruguayMenu.png; sourceTree = "<group>"; };
 		4496FD832063368B003F8C67 /* Tools.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tools.cpp; sourceTree = "<group>"; };
 		4496FD842063368B003F8C67 /* Tools.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Tools.hpp; sourceTree = "<group>"; };
 		4496FD862063E99C003F8C67 /* Field.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Field.cpp; sourceTree = "<group>"; };
@@ -82,11 +93,6 @@
 		44BED94A2062D64F00D9585F /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		44BED9522062D72C00D9585F /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
 		44BED9532062D72C00D9585F /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
-		44BED95D2062D81D00D9585F /* Brazil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Brazil.png; path = assets/Brazil.png; sourceTree = "<group>"; };
-		44BED95E2062D81D00D9585F /* Italy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Italy.png; path = assets/Italy.png; sourceTree = "<group>"; };
-		44BED95F2062D81D00D9585F /* Netherlands.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Netherlands.png; path = assets/Netherlands.png; sourceTree = "<group>"; };
-		44BED9602062D81D00D9585F /* Portugal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Portugal.png; path = assets/Portugal.png; sourceTree = "<group>"; };
-		44BED9612062D81D00D9585F /* Uruguay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Uruguay.png; path = assets/Uruguay.png; sourceTree = "<group>"; };
 		44BED9622062D83E00D9585F /* Input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Input.cpp; sourceTree = "<group>"; };
 		44BED9632062D83E00D9585F /* Input.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Input.hpp; sourceTree = "<group>"; };
 		44BED9642062D83E00D9585F /* Output.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Output.cpp; sourceTree = "<group>"; };
@@ -125,6 +131,23 @@
 				445EDB0120682B9700D062E1 /* Scene.hpp */,
 			);
 			name = Windows;
+			sourceTree = "<group>";
+		};
+		445EDB0C2068AF9F00D062E1 /* Countries */ = {
+			isa = PBXGroup;
+			children = (
+				445EDB122068B38400D062E1 /* BrazilMenu.png */,
+				445EDB132068B38400D062E1 /* EnglandMenu.png */,
+				445EDB142068B38400D062E1 /* PortugalMenu.png */,
+				445EDB152068B38400D062E1 /* RussiaMenu.png */,
+				445EDB162068B38400D062E1 /* UruguayMenu.png */,
+				445EDB0D2068AFB800D062E1 /* BrazilLabel.png */,
+				445EDB0E2068AFB800D062E1 /* EnglandLabel.png */,
+				445EDB0F2068AFB800D062E1 /* PortugalLabel.png */,
+				445EDB102068AFB800D062E1 /* RussiaLabel.png */,
+				445EDB112068AFB800D062E1 /* UruguayLabel.png */,
+			);
+			name = Countries;
 			sourceTree = "<group>";
 		};
 		4496FD9820642C21003F8C67 /* Gems */ = {
@@ -189,6 +212,9 @@
 		44BED9562062D75100D9585F /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				445EDB0C2068AF9F00D062E1 /* Countries */,
+				445EDB0B2068ACC700D062E1 /* PickTeam.png */,
+				445EDB0A2068AADB00D062E1 /* MenuSeparator.png */,
 				445EDB092068987A00D062E1 /* CountryBack.png */,
 				445EDB0620684F6000D062E1 /* PlayDown.png */,
 				445EDB0720684F6000D062E1 /* PlayOut.png */,
@@ -198,13 +224,7 @@
 				445EDAEE20647DAB00D062E1 /* Ball.png */,
 				445EDAEF20647DAB00D062E1 /* Goalkeeper.png */,
 				445EDAF020647DAB00D062E1 /* Referee.png */,
-				445EDAED20646F8600D062E1 /* Uruguay_Shirt.png */,
 				4496FD992064675F003F8C67 /* Field_lvl1.png */,
-				44BED95D2062D81D00D9585F /* Brazil.png */,
-				44BED95E2062D81D00D9585F /* Italy.png */,
-				44BED95F2062D81D00D9585F /* Netherlands.png */,
-				44BED9602062D81D00D9585F /* Portugal.png */,
-				44BED9612062D81D00D9585F /* Uruguay.png */,
 			);
 			name = assets;
 			sourceTree = "<group>";

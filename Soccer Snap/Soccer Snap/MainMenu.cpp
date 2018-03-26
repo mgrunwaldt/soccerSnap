@@ -28,8 +28,20 @@ void MainMenu::handleEvents(){
     while (input->eventsLeft()) {
         EventType e = input->checkEvent();
         playButton->handleEvent(e);
+        if(playButton->isSelected()){
+            exit(0);
+        }
         for(int i = 0;i<5;i++){
+            bool selectedBefore = countryButtons[i]->isSelected();
             countryButtons[i]->handleEvent(e);
+            bool selectedAfter = countryButtons[i]->isSelected();
+            if(!selectedBefore && selectedAfter){
+                for(int j = 0;j<5;j++){
+                    if(i != j)
+                        countryButtons[j]->setSelected(false);
+                }
+            }
+            selectedCountry = i;
         }
     }
    
@@ -43,7 +55,26 @@ void MainMenu::render(){
     playButton->render();
     for(int i = 0;i<5;i++){
         countryButtons[i]->render();
+        int labelXPos = 64+i*193;
+        int labelYPos = 453;
+        std::string labelExtension = "Label";
+        std::string labelName = countries[i]+labelExtension;
+        char* labelSpriteName = strdup(labelName.c_str());
+        output->addSprite(labelSpriteName, labelXPos, labelYPos, 175);
+        
+        int shirtXPos = 88+i*193;
+        int shirtYPos = 283;
+        std::string shirtExtension = "Menu";
+        std::string shirtName = countries[i]+shirtExtension;
+        char* shirtSpriteName = strdup(shirtName.c_str());
+        output->addSprite(shirtSpriteName, shirtXPos, shirtYPos, 132);
+        
+
     }
+    output->addSprite("LogoBall", 666, 13, 93);
+    output->addSprite("Logo", 321, 35, 391);
+    output->addSprite("PickTeam", 450, 184, 162);
+    output->addSprite("MenuSeparator", 64, 215, 946);
     output->drawScreen();
 }
 
@@ -75,5 +106,7 @@ void MainMenu::loadCountries(){
         countryButton->setPosition(xPos, yPos);
         countryButtons[i] = countryButton;
     }
+    countryButtons[0]->setSelected(true);
+    selectedCountry = 0;
 
 }

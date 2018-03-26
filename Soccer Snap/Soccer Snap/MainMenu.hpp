@@ -13,6 +13,9 @@
 #include "Input.hpp"
 #include "Scene.hpp"
 #include "Button.hpp"
+#include <string>
+#include <vector>
+
 
 class MainMenu:public Scene{
 public:
@@ -34,7 +37,7 @@ private:
     Output *output;
     Input * input;
     bool active;
-    char* countries[5];
+    char* countries[5]= {"Uruguay","Portugal","England","Brazil","Russia"};
     int selectedCountry;
     char* logo;
     char* logoBall;

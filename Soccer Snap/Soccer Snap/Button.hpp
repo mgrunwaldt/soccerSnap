@@ -31,7 +31,8 @@ public:
     
     void setAlphas(int alphas [3]);
     
-    
+    bool isSelected();
+    void setSelected (bool isSelected);
 private:
     //Top left position
     Point position;
@@ -39,6 +40,7 @@ private:
     Output* output;
     
     bool mouseIsInside();
+    bool selected;
     char* buttonSprites[3];
     int buttonAlphas[3];
     Point spriteDimensions[3];

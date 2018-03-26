@@ -12,6 +12,7 @@
 
 Button::Button(Output* o, Input* i,char* sprites[3])
 {
+    selected = false;
     position.x = 0;
     position.y = 0;
     
@@ -39,9 +40,20 @@ void Button::setAlphas(int alphas[3]){
 }
 #pragma mark Events
 
+bool Button::isSelected(){
+    return selected;
+}
+
+void Button::setSelected(bool isSelected){
+    selected = isSelected;
+}
+
 void Button::handleEvent(EventType e )
 {
-    if(e == EventType::MouseMotion || e == EventType::MouseUp || e == EventType::MouseDown){
+    if(selected){
+        currentSprite = MOUSE_DOWN;
+    }
+    else if(e == EventType::MouseMotion || e == EventType::MouseUp || e == EventType::MouseDown){
         if(!mouseIsInside()){
             currentSprite = MOUSE_OUT;
         }
@@ -50,6 +62,9 @@ void Button::handleEvent(EventType e )
                 currentSprite = MOUSE_DOWN;
             }
             else currentSprite = MOUSE_OVER;
+            
+            if(e == EventType::MouseUp)
+                selected = true;
         }
         
     }
