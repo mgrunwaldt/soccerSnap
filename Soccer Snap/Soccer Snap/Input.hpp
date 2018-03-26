@@ -16,6 +16,8 @@ class Input{
 public:
     EventType checkEvent();
     Point getMousePosition();
+    bool eventsLeft();
+
     
 private:
     

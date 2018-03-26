@@ -8,7 +8,30 @@
 
 #ifndef Loader_hpp
 #define Loader_hpp
+#include "Output.hpp"
+#include "Input.hpp"
+#include "Scene.hpp"
 
-#include <stdio.h>
 
+class Loader:public Scene{
+public:
+    Loader(Output* o, Input* i, int frameRate);
+    ~Loader();
+    
+    
+    void load();
+    void handleEvents();
+    void update();
+    void render();
+    void clean();
+    
+    bool isActive();
+
+    
+    
+private:
+    Output *output;
+    Input * input;
+    bool loading;
+};
 #endif /* Loader_hpp */

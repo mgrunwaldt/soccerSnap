@@ -7,7 +7,17 @@
 //
 
 #include "Input.hpp"
+/*
+ while( SDL_PollEvent( &e ) != 0 )
+ {
+ */
 
+bool Input::eventsLeft(){
+    if(SDL_PollEvent(NULL) != 0){
+        return true;
+    }
+    return false;
+}
 EventType Input::checkEvent(){
     SDL_Event event;
     SDL_PollEvent(&event);
@@ -19,6 +29,8 @@ EventType Input::checkEvent(){
             return EventType::MouseDown;
         case SDL_MOUSEBUTTONUP:
             return EventType::MouseUp;
+        case SDL_MOUSEMOTION:
+            return EventType::MouseMotion;
         default:
             return EventType::Unknown;
             break;

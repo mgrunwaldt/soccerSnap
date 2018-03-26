@@ -13,6 +13,7 @@ enum class EventType{
     Exit,
     MouseDown,
     MouseUp,
+    MouseMotion,
     Unknown
 };
 #endif /* EventType_hpp */

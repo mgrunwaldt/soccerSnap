@@ -8,6 +8,7 @@
 
 #include "Output.hpp"
 
+#pragma mark Setup
 Output::~Output(){
     SDL_DestroyWindow(window);
     SDL_DestroyRenderer(renderer);
@@ -24,7 +25,7 @@ bool Output::init(){
         if(window){
             renderer = SDL_CreateRenderer(window, -1, 0);
             if(renderer){
-                SDL_SetRenderDrawColor(renderer, 0, 178, 85, 255);
+                SDL_SetRenderDrawColor(renderer, 0, 103, 20, 255);
                 SDL_RenderClear(renderer);
                 return true;
             }
@@ -33,16 +34,37 @@ bool Output::init(){
     return false;
 }
 
+
+
+#pragma mark Screen
+
 void Output::clearScreen(){
     SDL_RenderClear(renderer);
 }
 
 void Output::drawScreen(){
-    
-
     SDL_RenderPresent(renderer);
-   
 }
+
+bool Output::screenIsHd(){
+    int w1, w2, h1, h2;
+    SDL_GL_GetDrawableSize(window, &w1, &h1);
+    SDL_GetWindowSize(window, &w2, &h2);
+    if(w1>w2){
+        return true;
+    }
+    return false;;
+}
+
+int Output::getRes(){
+    if(screenIsHd()){
+        winRes = HIGH;
+    }
+    else winRes = SD;
+    return winRes;
+}
+
+#pragma mark Images
 void Output::loadTexture(char* name){
     SDL_Texture* texture;
     
@@ -72,25 +94,9 @@ SDL_Texture* Output::getTexture(char* name){
     return texture;
 }
 
-bool Output::screenIsHd(){
-    int w1, w2, h1, h2;
-    SDL_GL_GetDrawableSize(window, &w1, &h1);
-    SDL_GetWindowSize(window, &w2, &h2);
-    if(w1>w2){
-        return true;
-    }
-    return false;;
-}
 
-int Output::getRes(){
-    if(screenIsHd()){
-        winRes = HIGH;
-    }
-    else winRes = SD;
-    return winRes;
-}
 
-void Output::addSprite(char* name,int x, int y, int width, int height){
+void Output::addSprite(char* name,int x, int y, int width, int height, int angle, int alpha){
     SDL_Texture * texture = getTexture(name);
     SDL_Rect destRect;
    
@@ -110,6 +116,22 @@ void Output::addSprite(char* name,int x, int y, int width, int height){
     }
     destRect.h = height*winRes;
    // destRect.w = originalWidth;
-    SDL_RenderCopy(renderer, texture, NULL, &destRect);
+ //   SDL_RenderCopy(renderer, texture, NULL, &destRect);
+    if(alpha != 255){
+        SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_BLEND );
+        SDL_SetTextureAlphaMod(texture, alpha );
+    }
+    SDL_RenderCopyEx(renderer, texture, NULL, &destRect, angle, NULL, SDL_FLIP_NONE);
 
+}
+
+Point Output::getSpriteDimensions(char* name){
+    SDL_Texture * texture = getTexture(name);
+    int originalWidth = 0;
+    int originalHeight = 0;
+    SDL_QueryTexture(texture, NULL, NULL, &originalWidth, &originalHeight);
+    Point toReturn;
+    toReturn.x = originalWidth/winRes;
+    toReturn.y = originalHeight/winRes;
+    return toReturn;
 }

@@ -8,7 +8,7 @@
 
 #include "Game.hpp"
 
-const int FPS = 60;
+/*const int FPS = 60;
 const int frameDelay = 1000/FPS;
 Uint32 frameStart;
 int frameTime;
@@ -147,5 +147,5 @@ void Game::clean(){
     delete input;
     delete output;
 }
-
+*/
 

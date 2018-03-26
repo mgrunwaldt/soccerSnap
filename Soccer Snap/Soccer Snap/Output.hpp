@@ -14,6 +14,7 @@
 #include <string>
 #include <vector>
 #include <map>
+#include "Point.hpp"
 
 class Output{
 public:
@@ -23,8 +24,9 @@ public:
     void clearScreen();
     void drawScreen();
     
-    void addSprite(char* name,int x, int y, int width, int height=0);
+    void addSprite(char* name,int x, int y, int width, int height=0, int angle = 0, int alpha = 255);
     
+    Point getSpriteDimensions (char*name);
     
     int getRes();
 private:

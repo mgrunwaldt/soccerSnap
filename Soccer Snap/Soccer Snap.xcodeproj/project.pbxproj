@@ -10,6 +10,8 @@
 		44221BCC206312C00088EB81 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44221BCA206312C00088EB81 /* Game.cpp */; };
 		445EDAF6206768C400D062E1 /* MainMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 445EDAF4206768C400D062E1 /* MainMenu.cpp */; };
 		445EDAF92067692500D062E1 /* Loader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 445EDAF72067692500D062E1 /* Loader.cpp */; };
+		445EDAFD20676ABD00D062E1 /* WindowManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 445EDAFB20676ABD00D062E1 /* WindowManager.cpp */; };
+		445EDB0520683F5900D062E1 /* Button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 445EDB0320683F5900D062E1 /* Button.cpp */; };
 		4496FD852063368B003F8C67 /* Tools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4496FD832063368B003F8C67 /* Tools.cpp */; };
 		4496FD882063E99C003F8C67 /* Field.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4496FD862063E99C003F8C67 /* Field.cpp */; };
 		4496FD8B20642BDD003F8C67 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4496FD8920642BDD003F8C67 /* Player.cpp */; };
@@ -50,6 +52,17 @@
 		445EDAF5206768C400D062E1 /* MainMenu.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MainMenu.hpp; sourceTree = "<group>"; };
 		445EDAF72067692500D062E1 /* Loader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Loader.cpp; sourceTree = "<group>"; };
 		445EDAF82067692500D062E1 /* Loader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Loader.hpp; sourceTree = "<group>"; };
+		445EDAFB20676ABD00D062E1 /* WindowManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WindowManager.cpp; sourceTree = "<group>"; };
+		445EDAFC20676ABD00D062E1 /* WindowManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = WindowManager.hpp; sourceTree = "<group>"; };
+		445EDAFE206771B800D062E1 /* Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Logo.png; path = assets/Logo.png; sourceTree = "<group>"; };
+		445EDAFF206771B800D062E1 /* LogoBall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LogoBall.png; path = assets/LogoBall.png; sourceTree = "<group>"; };
+		445EDB0120682B9700D062E1 /* Scene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Scene.hpp; sourceTree = "<group>"; };
+		445EDB0320683F5900D062E1 /* Button.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Button.cpp; sourceTree = "<group>"; };
+		445EDB0420683F5900D062E1 /* Button.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Button.hpp; sourceTree = "<group>"; };
+		445EDB0620684F6000D062E1 /* PlayDown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PlayDown.png; path = assets/PlayDown.png; sourceTree = "<group>"; };
+		445EDB0720684F6000D062E1 /* PlayOut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PlayOut.png; path = assets/PlayOut.png; sourceTree = "<group>"; };
+		445EDB0820684F6000D062E1 /* PlayOver.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PlayOver.png; path = assets/PlayOver.png; sourceTree = "<group>"; };
+		445EDB092068987A00D062E1 /* CountryBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CountryBack.png; path = assets/CountryBack.png; sourceTree = "<group>"; };
 		4496FD832063368B003F8C67 /* Tools.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tools.cpp; sourceTree = "<group>"; };
 		4496FD842063368B003F8C67 /* Tools.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Tools.hpp; sourceTree = "<group>"; };
 		4496FD862063E99C003F8C67 /* Field.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Field.cpp; sourceTree = "<group>"; };
@@ -107,6 +120,9 @@
 				445EDAF5206768C400D062E1 /* MainMenu.hpp */,
 				445EDAF72067692500D062E1 /* Loader.cpp */,
 				445EDAF82067692500D062E1 /* Loader.hpp */,
+				445EDAFB20676ABD00D062E1 /* WindowManager.cpp */,
+				445EDAFC20676ABD00D062E1 /* WindowManager.hpp */,
+				445EDB0120682B9700D062E1 /* Scene.hpp */,
 			);
 			name = Windows;
 			sourceTree = "<group>";
@@ -126,6 +142,8 @@
 				4496FD9320642C04003F8C67 /* Ball.hpp */,
 				4496FD9520642C12003F8C67 /* Goalkeeper.cpp */,
 				4496FD9620642C12003F8C67 /* Goalkeeper.hpp */,
+				445EDB0320683F5900D062E1 /* Button.cpp */,
+				445EDB0420683F5900D062E1 /* Button.hpp */,
 			);
 			name = Gems;
 			sourceTree = "<group>";
@@ -171,6 +189,12 @@
 		44BED9562062D75100D9585F /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				445EDB092068987A00D062E1 /* CountryBack.png */,
+				445EDB0620684F6000D062E1 /* PlayDown.png */,
+				445EDB0720684F6000D062E1 /* PlayOut.png */,
+				445EDB0820684F6000D062E1 /* PlayOver.png */,
+				445EDAFE206771B800D062E1 /* Logo.png */,
+				445EDAFF206771B800D062E1 /* LogoBall.png */,
 				445EDAEE20647DAB00D062E1 /* Ball.png */,
 				445EDAEF20647DAB00D062E1 /* Goalkeeper.png */,
 				445EDAF020647DAB00D062E1 /* Referee.png */,
@@ -269,10 +293,12 @@
 			files = (
 				4496FD8B20642BDD003F8C67 /* Player.cpp in Sources */,
 				44BED96E2062DF6300D9585F /* Gem.cpp in Sources */,
+				445EDAFD20676ABD00D062E1 /* WindowManager.cpp in Sources */,
 				445EDAF92067692500D062E1 /* Loader.cpp in Sources */,
 				44BED9662062D83E00D9585F /* Input.cpp in Sources */,
 				44BED94B2062D64F00D9585F /* main.cpp in Sources */,
 				4496FD852063368B003F8C67 /* Tools.cpp in Sources */,
+				445EDB0520683F5900D062E1 /* Button.cpp in Sources */,
 				44BED9672062D83E00D9585F /* Output.cpp in Sources */,
 				4496FD9720642C12003F8C67 /* Goalkeeper.cpp in Sources */,
 				44221BCC206312C00088EB81 /* Game.cpp in Sources */,

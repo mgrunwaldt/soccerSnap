@@ -7,11 +7,14 @@
 //
 
 #include <iostream>
-#include "Game.hpp"
+#include "WindowManager.hpp"
 
-Game * game = nullptr;
+WindowManager * manager = nullptr;
 int main(int argc, const char * argv[]) {
-    game = new Game();
+    /*game = new Game();
     game->init();
-    game->run();
+    game->run();*/
+    
+    manager = new WindowManager();
+    manager->showLoader();
    }
