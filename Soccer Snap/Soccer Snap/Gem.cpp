@@ -29,7 +29,7 @@ void Gem::setPos(int gridX, int gridY){
     x = 6+fieldX+gridX*(separation+width);
     y = 6+fieldY+gridY*(separation+width);
 }
-void Gem::draw(){
+void Gem::render(){
     outputFacade->addSprite(spriteName, x, y, width, height);
 }
 

@@ -7,11 +7,8 @@
 //
 
 #include "WindowManager.hpp"
-#include <chrono>
-#include <thread>
 
-const float FPS = 60;
-const float frameDelay = 1000/FPS;
+
 Uint32 frameStart;
 float frameTime;
 
@@ -20,8 +17,9 @@ WindowManager::WindowManager(){
     output = new Output();
     input = new Input();
     output->init();
-    loaderScene = new Loader(output, input,FPS);
+    loaderScene = new Loader(output, input);
     mainMenuScene = new MainMenu(output,input);
+    gameScene = new GameScene(output,input);
 }
 
 WindowManager::~WindowManager(){
@@ -29,7 +27,7 @@ WindowManager::~WindowManager(){
 }
 
 void WindowManager::presentScene(){
-    std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+ //   std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 
     while (activeScene->isActive()) {
         frameStart = Tools::getTicks();
@@ -39,8 +37,8 @@ void WindowManager::presentScene(){
         activeScene->render();
         
         frameTime = Tools::getTicks()- frameStart;
-        if(frameDelay>frameTime){
-            Tools::delay(frameDelay-frameTime);
+        if(Constants::frameDelay>frameTime){
+            Tools::delay(Constants::frameDelay-frameTime);
         }
     }
 
@@ -58,9 +56,16 @@ void WindowManager::showLoader(){
 void WindowManager::showMainMenu(){
     activeScene = mainMenuScene;
     presentScene();
+    int chosenCountry = mainMenuScene->getChosenCountry();
+    showGameScreen(chosenCountry);
+    delete mainMenuScene;
 }
 
-void WindowManager::showGameScreen(){
+void WindowManager::showGameScreen(int country){
+    gameScene->setDuration(130);
+    gameScene->load();
+    activeScene = gameScene;
+    presentScene();
     /*game = new Game();
      game->init();
      game->run();*/

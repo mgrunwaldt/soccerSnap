@@ -11,11 +11,11 @@
 #include "Output.hpp"
 #include "Input.hpp"
 #include "Scene.hpp"
-
+#include "Constants.hpp"
 
 class Loader:public Scene{
 public:
-    Loader(Output* o, Input* i, int frameRate);
+    Loader(Output* o, Input* i);
     ~Loader();
     
     

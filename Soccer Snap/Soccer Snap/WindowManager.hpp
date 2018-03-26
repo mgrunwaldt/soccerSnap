@@ -15,8 +15,11 @@
 #include "Tools.hpp"
 #include "Scene.hpp"
 #include "MainMenu.hpp"
+#include "GameScene.hpp"
+#include "Constants.hpp"
 
-
+#include <chrono>
+#include <thread>
 
 class WindowManager{
 public:
@@ -25,7 +28,7 @@ public:
     
     void showLoader();
     void showMainMenu();
-    void showGameScreen();
+    void showGameScreen(int selectedCountry);
     
     void presentScene();
     
@@ -37,7 +40,7 @@ private:
     Scene * activeScene;
     Loader * loaderScene;
     MainMenu * mainMenuScene;
-    
+    GameScene* gameScene;
     
     void disposeScreens();
     void render();

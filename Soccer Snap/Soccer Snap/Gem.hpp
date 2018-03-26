@@ -16,7 +16,7 @@ class Gem: public GameObject{
 
     
 public:
-    void draw();
+    void render();
     void update();
     void clean();
     void setPos(int gridX, int gridY);

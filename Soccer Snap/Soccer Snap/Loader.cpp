@@ -13,18 +13,15 @@ float ballX = -300;
 float finalLogoX = 123;
 float finalBallX = 773;
 
-const float loaderSeconds = 2;
-float FPS;
 float logoXPerSecond;
 float ballXPerSecond;
 
 int ballRotation = 0;
 
-Loader::Loader(Output* o, Input* i, int frameRate){
+Loader::Loader(Output* o, Input* i){
     output = o;
     input = i;
     loading = true;
-    FPS = frameRate;
 }
 
 Loader::~Loader(){
@@ -32,8 +29,8 @@ Loader::~Loader(){
 }
 
 void Loader::load(){
-    logoXPerSecond = (finalLogoX-logoX)/(FPS*loaderSeconds);
-    ballXPerSecond = (finalBallX-ballX)/(FPS*loaderSeconds);
+    logoXPerSecond = (finalLogoX-logoX)/(Constants::FPS*Constants::loaderSeconds);
+    ballXPerSecond = (finalBallX-ballX)/(Constants::FPS*Constants::loaderSeconds);
     output->addSprite("LogoBall", ballX, 203, 175, 0, ballRotation);
     output->addSprite("Logo", logoX, 240, 739);
 }

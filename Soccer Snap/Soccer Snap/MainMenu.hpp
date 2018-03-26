@@ -30,7 +30,7 @@ public:
     void clean();
     
     bool isActive();
-    
+    int getChosenCountry();
     
     
 private:

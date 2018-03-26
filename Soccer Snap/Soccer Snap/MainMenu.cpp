@@ -8,6 +8,8 @@
 
 #include "MainMenu.hpp"
 
+#pragma mark Setup:
+
 MainMenu::MainMenu(Output* o, Input* i){
     output = o;
     input = i;
@@ -24,12 +26,15 @@ void MainMenu::load(){
     
 }
 
+#pragma mark Cycle:
+
 void MainMenu::handleEvents(){
     while (input->eventsLeft()) {
         EventType e = input->checkEvent();
         playButton->handleEvent(e);
         if(playButton->isSelected()){
-            exit(0);
+            active = false;
+            break;
         }
         for(int i = 0;i<5;i++){
             bool selectedBefore = countryButtons[i]->isSelected();
@@ -40,8 +45,9 @@ void MainMenu::handleEvents(){
                     if(i != j)
                         countryButtons[j]->setSelected(false);
                 }
+                selectedCountry = i;
             }
-            selectedCountry = i;
+            
         }
     }
    
@@ -82,12 +88,16 @@ void MainMenu::clean(){
     
 }
 
-
+#pragma mark Actions:
 bool MainMenu::isActive(){
     return active;
 }
 
-#pragma mark: GUI Setup
+int MainMenu::getChosenCountry(){
+    return selectedCountry;
+}
+
+#pragma mark: GUI Load
 
 void MainMenu::loadPlayButton(){
     char* buttonSprites[3]={"PlayOut","PlayOver","PlayDown"};

@@ -21,7 +21,7 @@ Output::~Output(){
 
 bool Output::init(){
     if(SDL_Init(SDL_INIT_EVERYTHING)==0){
-        window = SDL_CreateWindow("Title", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1072, 670, SDL_WINDOW_ALLOW_HIGHDPI);
+        window = SDL_CreateWindow("Title", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1072, 720, SDL_WINDOW_ALLOW_HIGHDPI);
         if(window){
             renderer = SDL_CreateRenderer(window, -1, 0);
             if(renderer){
