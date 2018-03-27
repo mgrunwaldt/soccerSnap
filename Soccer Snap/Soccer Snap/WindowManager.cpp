@@ -62,6 +62,7 @@ void WindowManager::showMainMenu(){
 }
 
 void WindowManager::showGameScreen(int country){
+    gameScene->setCountries(country);
     gameScene->setDuration(130);
     gameScene->load();
     activeScene = gameScene;

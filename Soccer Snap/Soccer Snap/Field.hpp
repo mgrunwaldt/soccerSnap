@@ -23,8 +23,9 @@ public:
     Field(Output* o);
     ~Field();
     
-    void loadField();
-    void drawField();
+    void load(char* myCountry, char*opponentCountry);
+    void update();
+    void render();
     
     void mouseDown(Point p);
     void mouseUp(Point p);

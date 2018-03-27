@@ -14,6 +14,7 @@
 #include "Scene.hpp"
 #include "Button.hpp"
 #include "Timer.hpp"
+#include "Field.hpp"
 #include <string>
 #include <vector>
 
@@ -30,7 +31,7 @@ public:
     void render();
     void clean();
     
-    void setMyCountry(int countryPos);
+    void setCountries(int countryPos);
     void setDuration(int time);
     bool isActive();
     
@@ -45,7 +46,8 @@ private:
     int opponentPoints;
     bool active;
     char* countries[5]= {"Uruguay","Portugal","England","Brazil","Russia"};
-    int selectedCountry;
+    char* selectedCountry;
+    char* opponentCountry;
     char* logo;
     char* logoBall;
     
@@ -54,6 +56,7 @@ private:
     Button* countryButtons[5];
     
     Timer* gameTimer;
+    Field* field;
     
     void loadGUIElements();
     void loadTimer();

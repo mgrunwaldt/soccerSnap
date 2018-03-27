@@ -46,8 +46,6 @@
 		44221BCB206312C00088EB81 /* Game.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Game.hpp; sourceTree = "<group>"; };
 		44221BD120631E230088EB81 /* EventType.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EventType.hpp; sourceTree = "<group>"; };
 		445EDAEE20647DAB00D062E1 /* Ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Ball.png; path = assets/Ball.png; sourceTree = "<group>"; };
-		445EDAEF20647DAB00D062E1 /* Goalkeeper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Goalkeeper.png; path = assets/Goalkeeper.png; sourceTree = "<group>"; };
-		445EDAF020647DAB00D062E1 /* Referee.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Referee.png; path = assets/Referee.png; sourceTree = "<group>"; };
 		445EDAF220670F8500D062E1 /* Point.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Point.hpp; sourceTree = "<group>"; };
 		445EDAF4206768C400D062E1 /* MainMenu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainMenu.cpp; sourceTree = "<group>"; };
 		445EDAF5206768C400D062E1 /* MainMenu.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MainMenu.hpp; sourceTree = "<group>"; };
@@ -130,6 +128,13 @@
 		4496FD9320642C04003F8C67 /* Ball.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Ball.hpp; sourceTree = "<group>"; };
 		4496FD9520642C12003F8C67 /* Goalkeeper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Goalkeeper.cpp; sourceTree = "<group>"; };
 		4496FD9620642C12003F8C67 /* Goalkeeper.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Goalkeeper.hpp; sourceTree = "<group>"; };
+		449FA6922069B7BF002D37C3 /* Goalkeeper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Goalkeeper.png; path = assets/Goalkeeper.png; sourceTree = "<group>"; };
+		449FA693206AB7A1002D37C3 /* Brazil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Brazil.png; path = assets/Brazil.png; sourceTree = "<group>"; };
+		449FA694206AB7A1002D37C3 /* England.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = England.png; path = assets/England.png; sourceTree = "<group>"; };
+		449FA695206AB7A1002D37C3 /* Portugal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Portugal.png; path = assets/Portugal.png; sourceTree = "<group>"; };
+		449FA696206AB7A1002D37C3 /* Russia.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Russia.png; path = assets/Russia.png; sourceTree = "<group>"; };
+		449FA697206AB7A1002D37C3 /* Uruguay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Uruguay.png; path = assets/Uruguay.png; sourceTree = "<group>"; };
+		449FA698206AB7C3002D37C3 /* Referee.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Referee.png; path = assets/Referee.png; sourceTree = "<group>"; };
 		44BED9472062D64F00D9585F /* Soccer Snap */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Soccer Snap"; sourceTree = BUILT_PRODUCTS_DIR; };
 		44BED94A2062D64F00D9585F /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		44BED9522062D72C00D9585F /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
@@ -179,6 +184,11 @@
 		445EDB0C2068AF9F00D062E1 /* Countries */ = {
 			isa = PBXGroup;
 			children = (
+				449FA693206AB7A1002D37C3 /* Brazil.png */,
+				449FA694206AB7A1002D37C3 /* England.png */,
+				449FA695206AB7A1002D37C3 /* Portugal.png */,
+				449FA696206AB7A1002D37C3 /* Russia.png */,
+				449FA697206AB7A1002D37C3 /* Uruguay.png */,
 				445EDB122068B38400D062E1 /* BrazilMenu.png */,
 				445EDB132068B38400D062E1 /* EnglandMenu.png */,
 				445EDB142068B38400D062E1 /* PortugalMenu.png */,
@@ -258,6 +268,16 @@
 			name = Gems;
 			sourceTree = "<group>";
 		};
+		449FA6912069B6D2002D37C3 /* Gems */ = {
+			isa = PBXGroup;
+			children = (
+				449FA698206AB7C3002D37C3 /* Referee.png */,
+				445EDAEE20647DAB00D062E1 /* Ball.png */,
+				449FA6922069B7BF002D37C3 /* Goalkeeper.png */,
+			);
+			name = Gems;
+			sourceTree = "<group>";
+		};
 		44BED93E2062D64F00D9585F = {
 			isa = PBXGroup;
 			children = (
@@ -299,6 +319,7 @@
 		44BED9562062D75100D9585F /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				449FA6912069B6D2002D37C3 /* Gems */,
 				445EDB3820694D4E00D062E1 /* Buttons */,
 				445EDB2220694D2400D062E1 /* Numbers */,
 				445EDB1B2068C15100D062E1 /* Board.png */,
@@ -315,9 +336,6 @@
 				445EDB0820684F6000D062E1 /* PlayOver.png */,
 				445EDAFE206771B800D062E1 /* Logo.png */,
 				445EDAFF206771B800D062E1 /* LogoBall.png */,
-				445EDAEE20647DAB00D062E1 /* Ball.png */,
-				445EDAEF20647DAB00D062E1 /* Goalkeeper.png */,
-				445EDAF020647DAB00D062E1 /* Referee.png */,
 			);
 			name = assets;
 			sourceTree = "<group>";

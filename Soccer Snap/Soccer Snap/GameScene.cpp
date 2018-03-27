@@ -28,8 +28,16 @@ void GameScene::load(){
     
 }
 
-void GameScene::setMyCountry(int countryPos){
-    selectedCountry = countryPos;
+void GameScene::setCountries(int countryPos){
+    selectedCountry = countries[countryPos];
+    bool foundCorrect = false;
+    while(!foundCorrect){
+        int randNum = rand()%(5);
+        if(randNum != countryPos){
+            opponentCountry = countries[randNum];
+            foundCorrect = true;
+        }
+    }
 }
 
 void GameScene::setDuration(int time){
@@ -51,6 +59,7 @@ void GameScene::handleEvents(){
     
 }
 void GameScene::update(){
+    field->update();
     if(gameTimer->isActive()){
         gameTimer->update();
     }
@@ -65,6 +74,7 @@ void GameScene::render(){
     homeButton->render();
     pauseButton->render();
     output->drawScreen();
+    
 }
 
 void GameScene::clean(){
@@ -130,22 +140,40 @@ void GameScene::renderImages(){
     output->addSprite("Board", 351, 645, 144,63);
     output->addSprite("Board", 577, 645, 144,63);
     output->addSprite("VsLabel", 521, 686, 34);
-    output->addSprite("LogoBall", 988, 12, 38);
-    output->addSprite("Logo", 847, 20, 161);
+    output->addSprite("Goalkeeper", 726, 18, 64);
+
+    output->addSprite("StadiumFloor", -55, 0, 265,720);
+    output->addSprite("StadiumFloor", 862, 0,265, 720,180);
+    field->render();
+    output->addSprite("UruguayFans", -55, 0, 265,720);
+    output->addSprite("UruguayFans", 862, 0,265, 720,180);
+    
+    std::string name = "Menu";
+    std::string countryString = selectedCountry;
+    std::string opponentString = opponentCountry;
+    
+    char* myCountryName = strdup((countryString+name).c_str());
+    char* opponentCountryName = strdup((opponentString+name).c_str());
+
+    output->addSprite(myCountryName, 283, 645, 51);
+    output->addSprite(opponentCountryName, 736, 645, 51);
+    
 }
 
 void GameScene::loadGUIElements(){
     char* pauseButtonSprites[3]={"PauseButtonOut","PauseButtonOver","PauseButtonIn"};
     pauseButton = new Button(output,input,pauseButtonSprites);
-    pauseButton->setPosition(100, 20);
+    pauseButton->setPosition(342, 23);
     
     char* menuButtonSprites[3]={"MenuButtonOut","MenuButtonOver","MenuButtonIn"};
     homeButton = new Button(output,input,menuButtonSprites);
-    homeButton->setPosition(30, 20);
+    homeButton->setPosition(272, 23);
    
     
 }
 
 void GameScene::loadField(){
-        
+    field = new Field(output);
+    field->load(selectedCountry,opponentCountry);
+
 }

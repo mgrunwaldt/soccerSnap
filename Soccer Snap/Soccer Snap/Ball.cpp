@@ -9,6 +9,6 @@
 #include "Ball.hpp"
 
 void Ball::load(Output*output, int w, int h){
-    spriteName = "Ball@2x";
+    spriteName = "Ball";
     Gem::load(output, w);
 }

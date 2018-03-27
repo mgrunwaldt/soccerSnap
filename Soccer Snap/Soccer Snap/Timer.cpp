@@ -16,6 +16,7 @@ Timer::Timer(Output* o, int seconds){
     timeLeft = secondsLeft;
     active = false;
 }
+
 Timer::~Timer(){
 
 }
@@ -60,6 +61,7 @@ void Timer::render(){
     outputFacade->addSprite("TimerSeparator", 531, 22, 10);
     outputFacade->addSprite(tenthSecondSpriteName, 539, 22, 34);
     outputFacade->addSprite(secondSpriteName, 573, 22, 34);
+    
 
     
 }

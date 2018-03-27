@@ -23,15 +23,28 @@ public:
     virtual void load(Output* output, int w, int h=0);
     void setSprite(char* spriteName);
     bool isSelected();
+    void setInitialAnimationPosition();
     
     ~Gem();
 private:
     Output* outputFacade;
-    int x;
-    int y;
+    float x;
+    float y;
+    float finalX;
+    float finalY;
+    float xVector;
+    float yVector;
+    int boardX;
+    int boardY;
     int width;
     int height;
     bool selected;
+    int initialXPosition;
+    int initialYPosition;
+    int firstStopX;
+    int firstStopY;
+    bool goingToFirstStop;
+    bool goingToPosition;
 protected:
     char* spriteName;
 };
