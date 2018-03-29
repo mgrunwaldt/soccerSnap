@@ -11,3 +11,7 @@
 void Rival::load(Output*output, int w, int h){
     Gem::load(output, w);
 }
+
+char* Rival::getType(){
+    return "Rival";
+}

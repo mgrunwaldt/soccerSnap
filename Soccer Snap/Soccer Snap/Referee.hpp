@@ -16,6 +16,7 @@ class Referee: public Gem{
     
 public:
     void load(Output* output, int w, int h=0);
+    char* getType();
 private:
     
 };

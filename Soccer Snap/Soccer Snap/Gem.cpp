@@ -27,6 +27,10 @@ void Gem::load(Output*output, int w, int h){
     height = h;
     goingToPosition = false;
     goingToFirstStop = false;
+    inPlace = false;
+    selected = false;
+    willBeDeleted = false;
+    goingDown = false;
 }
 
 void Gem::setPos(int gridX, int gridY){
@@ -65,7 +69,20 @@ void Gem::setInitialAnimationPosition(){
 #pragma mark Game Cycle:
 
 void Gem::render(){
-    outputFacade->addSprite(spriteName, x, y, width, height);
+    if(willBeDeleted){
+        //hacer algo antes
+        //willBeDeleted = false;
+    }
+    if(selected){
+        std::string name = "Selected";
+        
+        std::string minuteName = spriteName+name;
+        char* selectedSpriteName = strdup(minuteName.c_str());
+        outputFacade->addSprite(selectedSpriteName, x, y, width, height);
+    }
+    else{
+        outputFacade->addSprite(spriteName, x, y, width, height);
+    }
 }
 
 void Gem::update(){
@@ -92,14 +109,96 @@ void Gem::update(){
             x = finalX;
             y = finalY;
             goingToPosition = false;
+            inPlace = true;
             
         }
     }
+    else if (switching){
+        if(finalX>x+velocity){
+            x+=velocity;
+            if(finalX<=x+velocity)
+                switching = false;
+        }
+        else if(finalX<x-velocity){
+            x-=velocity;
+            if(finalX>=x-velocity)
+                switching = false;
+        }
+        else if(finalY>y+velocity){
+            y+=velocity;
+            if(finalY<=y+velocity)
+                switching = false;
+        }
+        else if(finalY<y-velocity){
+            y-=velocity;
+            if(finalY>=y-velocity)
+                switching = false;
+        }
+        
+    }
+    else if(needsDelete()){
+        willBeDeleted = false;
+    }
+    else if(goingDown){
+        if(finalY>y+velocity){
+            y+=velocity;
+            if(finalY<=y+velocity)
+                goingDown = false;
+        }
+    }
 }
+
 void Gem::clean(){
     
 }
 
-#pragma mark Animations:
+#pragma mark Game Logic:
 
+void Gem::setDeleted(){
+    willBeDeleted = true;
+}
+
+bool Gem::needsDelete(){
+    return willBeDeleted;
+}
+void Gem::switchWithGem(int gridX,int gridY){
+    boardX = gridX;
+    boardY = gridY;
+    finalX = fieldX+gridX*(width);
+    finalY = fieldY+gridY*(width);
+    switching = true;
+}
+bool Gem::hasMouseInside(Point mousePosition){
+    if( mousePosition.x < x || mousePosition.x > x + width ||mousePosition.y < y||mousePosition.y > y + width)
+    {
+        return false;
+    }
+    return true;
+}
+
+bool Gem::isInPlace(){
+    return inPlace;
+}
+
+bool Gem::isSelected(){
+    return selected;
+}
+
+void Gem::setSelected(bool isSelected){
+    selected = isSelected;
+}
+
+bool Gem::isSwitching(){
+    return switching;
+}
+
+bool Gem::isGoingDown(){
+    return goingDown;
+}
+
+void Gem::setNextPos(int gridY){
+    finalY = fieldY+gridY*(width);
+    boardY = gridY;
+    goingDown = true;
+}
 

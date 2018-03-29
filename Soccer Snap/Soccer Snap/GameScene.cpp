@@ -54,7 +54,12 @@ void GameScene::handleEvents(){
     while (input->eventsLeft()) {
         EventType e = input->checkEvent();
         homeButton->handleEvent(e);
+        if(homeButton->isSelected()){
+            goToMainMenu();
+            break;
+        }
         pauseButton->handleEvent(e);
+        field->handleEvent(e);
     }
     
 }
@@ -92,6 +97,10 @@ void GameScene::addOpponentPoints(int pointsToAdd){
 
 bool GameScene::isActive(){
     return active;
+}
+
+void GameScene::goToMainMenu(){
+    active = false;
 }
 
 
@@ -173,7 +182,7 @@ void GameScene::loadGUIElements(){
 }
 
 void GameScene::loadField(){
-    field = new Field(output);
+    field = new Field(output, input);
     field->load(selectedCountry,opponentCountry);
 
 }

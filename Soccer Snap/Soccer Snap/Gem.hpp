@@ -11,6 +11,7 @@
 
 #include "GameObject.hpp"
 #include "Output.hpp"
+#include <string>
 
 class Gem: public GameObject{
 
@@ -21,9 +22,24 @@ public:
     void clean();
     void setPos(int gridX, int gridY);
     virtual void load(Output* output, int w, int h=0);
+    virtual char* getType()=0;
     void setSprite(char* spriteName);
     bool isSelected();
+    void setSelected(bool isSelected);
+    
     void setInitialAnimationPosition();
+    void switchWithGem (int gridX,int gridY);
+    bool isInPlace();
+    bool isSwitching();
+    bool isGoingDown();
+    bool hasMouseInside (Point mousePosition);
+    
+    int boardX;
+    int boardY;
+    
+    void setDeleted();
+    bool needsDelete();
+    void setNextPos(int gridY);
     
     ~Gem();
 private:
@@ -34,8 +50,7 @@ private:
     float finalY;
     float xVector;
     float yVector;
-    int boardX;
-    int boardY;
+    
     int width;
     int height;
     bool selected;
@@ -45,7 +60,15 @@ private:
     int firstStopY;
     bool goingToFirstStop;
     bool goingToPosition;
+    bool inPlace;
+    bool switching;
+    bool willBeDeleted;
+    bool goingDown;
+    
+    
+    
 protected:
     char* spriteName;
+    
 };
 #endif /* Gem_hpp */

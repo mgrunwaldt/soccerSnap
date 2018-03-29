@@ -17,9 +17,6 @@ WindowManager::WindowManager(){
     output = new Output();
     input = new Input();
     output->init();
-    loaderScene = new Loader(output, input);
-    mainMenuScene = new MainMenu(output,input);
-    gameScene = new GameScene(output,input);
 }
 
 WindowManager::~WindowManager(){
@@ -45,28 +42,35 @@ void WindowManager::presentScene(){
 }
 
 void WindowManager::showLoader(){
+    loaderScene = new Loader(output, input);
     loaderScene->load();
     activeScene = loaderScene;
     presentScene();
-    mainMenuScene->load();
-    this->showMainMenu();
     delete loaderScene;
+    this->showMainMenu();
+    
 }
 
 void WindowManager::showMainMenu(){
+    mainMenuScene = new MainMenu(output,input);
+    mainMenuScene->load();
     activeScene = mainMenuScene;
     presentScene();
     int chosenCountry = mainMenuScene->getChosenCountry();
-    showGameScreen(chosenCountry);
     delete mainMenuScene;
+    showGameScreen(chosenCountry);
+    
 }
 
 void WindowManager::showGameScreen(int country){
+    gameScene = new GameScene(output,input);
     gameScene->setCountries(country);
     gameScene->setDuration(130);
     gameScene->load();
     activeScene = gameScene;
     presentScene();
+    delete gameScene;
+    showMainMenu();
     /*game = new Game();
      game->init();
      game->run();*/

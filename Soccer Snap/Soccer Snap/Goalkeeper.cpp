@@ -12,3 +12,7 @@ void Goalkeeper::load(Output*output, int w, int h){
     spriteName = "Goalkeeper";
     Gem::load(output, w);
 }
+
+char* Goalkeeper::getType(){
+    return "Goalkeeper";
+}

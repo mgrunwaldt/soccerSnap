@@ -12,3 +12,7 @@ void Ball::load(Output*output, int w, int h){
     spriteName = "Ball";
     Gem::load(output, w);
 }
+
+char* Ball::getType(){
+    return "Ball";
+}

@@ -10,3 +10,7 @@
 void Player::load(Output*output, int w, int h){
     Gem::load(output, w);
 }
+
+char* Player::getType(){
+    return "Player";
+}

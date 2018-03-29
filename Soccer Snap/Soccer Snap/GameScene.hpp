@@ -64,6 +64,8 @@ private:
     void renderImages();
     void renderPoints();
     
+    void goToMainMenu();
+    
 };
 
 #endif /* GameScene_hpp */
