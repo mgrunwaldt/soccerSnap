@@ -7,10 +7,6 @@
 //
 
 #include "Input.hpp"
-/*
- while( SDL_PollEvent( &e ) != 0 )
- {
- */
 
 bool Input::eventsLeft(){
     if(SDL_PollEvent(NULL) != 0){
@@ -18,6 +14,7 @@ bool Input::eventsLeft(){
     }
     return false;
 }
+
 EventType Input::checkEvent(){
     SDL_Event event;
     SDL_PollEvent(&event);

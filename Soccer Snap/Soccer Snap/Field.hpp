@@ -18,7 +18,11 @@
 #include <ctime>
 #include <cstdlib>
 
+#include "FieldState.hpp"
+#include "FieldWaiting.hpp"
+#include "FieldAnimating.hpp"
 
+/*
 enum FieldStates
 {
     WAITING,
@@ -29,7 +33,7 @@ enum FieldStates
     PREPARING_DESTRUCTION,
     DESTROYING,
     GEMS_GOING_DOWN,
-};
+};*/
 
 class Field{
 public:
@@ -42,9 +46,13 @@ public:
     void update();
     void render();
     
+    bool needsToStart();
+    void start();
+    
     
     static const int FIELD_X = 280;
     static const int FIELD_Y = 72;
+    
 private:
     Gem* gems[8][8];
     Gem* firstGem;
@@ -54,7 +62,7 @@ private:
     string player;
     string opponent;
     
-    FieldStates state;
+    FieldState* state;
     bool selectedGemsAreAdjacent();
     bool canPlaceGem(int x, int y, Gem* gem);
     Gem* getRandomGem();
@@ -65,6 +73,8 @@ private:
     void clearGemsToDelete();
     
     void destroyGems();
+    
+    bool gameNeedsToStart;
     
     
 };

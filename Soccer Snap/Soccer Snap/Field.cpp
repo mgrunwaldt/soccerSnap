@@ -19,6 +19,7 @@ void Field::load(string myCountry, string opponentCountry){
     opponent = opponentCountry;
     firstGem = NULL;
     secondGem = NULL;
+    gameNeedsToStart = false;
     srand(time(NULL));
     for(int i=0;i<8;i++){
         for(int j=0;j<8;j++){
@@ -32,12 +33,18 @@ void Field::load(string myCountry, string opponentCountry){
             gems[i][j] = newGem;
         }
     }
-    state = FieldStates::ANIMATING;
+    state = new FieldAnimating();
 }
 
 
 #pragma mark Game Cycle:
 void Field::handleEvent(EventType e){
+    FieldState* newState = state->handleInput(e,*this);
+    if(newState != NULL){
+        delete state;
+        state = newState;
+    }
+    /*
     if(state == FieldStates::WAITING){
         if (e == EventType::MouseDown || e == EventType::MouseUp)
         {
@@ -92,10 +99,16 @@ void Field::handleEvent(EventType e){
                 }
             }
         }
-    }
+    }*/
 }
 
 void Field::update(){
+    FieldState* newState = state->update(*this);
+    if(newState != NULL){
+        delete state;
+        state = newState;
+    }
+    /*
     if(state == FieldStates::ANIMATING){
         bool allOk = true;
         for(int i=0;i<8;i++){
@@ -108,6 +121,7 @@ void Field::update(){
         }
         if(allOk){
             state = FieldStates::WAITING;
+            gameNeedsToStart = true;
         }
     }
     else if (state == FieldStates::WAITING){
@@ -182,18 +196,8 @@ void Field::update(){
             
             else state = WAITING;//mentira, chequar de nuevo
         }
-        /*bool isGoingDown = false;
-        for(int i = 0;i < gemsToDestroy.size(); i++){
-            gemsToDestroy[i]->update();
-            if(gemsToDestroy[i]->isGoingDown()){
-                isGoingDown = true;
-            }
-        }
-        if(!isGoingDown){
-            state = WAITING;//mentira, chequar de nuevo
-        }*/
     }
-    
+    */
     
 
 }
@@ -209,7 +213,7 @@ void Field::render(){
             toDraw->render();
         }
     }
-    if(state == DESTROYING){
+    /*if(state == DESTROYING){
         bool keepsDestroying = false;
         for(int i = 0;i < gemsToDestroy.size(); i++){
             gemsToDestroy[i]->render();
@@ -224,10 +228,19 @@ void Field::render(){
             }
             gemsToDestroy.clear();
         }
-    }
+    }*/
 }
 
 #pragma mark Game Logic:
+
+void Field::start(){
+    gameNeedsToStart = false;
+}
+
+bool Field::needsToStart(){
+    return gameNeedsToStart;
+}
+
 void Field::clearGemsToDelete(){
     for(int i=0;i<toDeleteY.size();i++){
         toDeleteY[i].clear();
@@ -244,7 +257,8 @@ Gem* Field::getGemAtMousePosition(Point p){
             }
         }
     }
-    throw new MouseOutFieldException;
+    MouseOutFieldException ex;
+    throw ex;
 }
 
 
@@ -299,6 +313,7 @@ Gem* Field::getRandomGem(){
 }
 
 void Field::destroyGems(){
+    /*
     for(int x = 0;x<8;x++){
         vector<int> columnToDelete = toDeleteY[x];
         if(columnToDelete.size() > 0){
@@ -339,7 +354,7 @@ void Field::destroyGems(){
         }
         
     }
-    state = FieldStates::DESTROYING;
+    state = FieldStates::DESTROYING;*/
 }
 
 bool Field::makeSwitch(){//Falta inicializar toDeleteY??

@@ -15,25 +15,24 @@ Timer::Timer(Output* o, int seconds){
     secondsLeft = seconds;
     timeLeft = secondsLeft;
     active = false;
+    boardSize = outputFacade->getSpriteDimensions("Board");
+    separatorSize = outputFacade->getSpriteDimensions("TimerSeparator");
+    numberSize = outputFacade->getSpriteDimensions("Timer0");
 }
 
-Timer::~Timer(){
-
-}
-
-void Timer::setPos(int x, int y){
-
-}
 
 #pragma mark Game Cycle:
 
 void Timer::update(){
     float secondsElapsed = Constants::FRAME_DELAY/1000;
-    timeLeft-=secondsElapsed;
-    secondsLeft = ceilf(timeLeft);
-    if(secondsLeft == 0){
-        active = false;
+    if(active){
+        timeLeft-=secondsElapsed;
+        secondsLeft = ceilf(timeLeft);
+        if(secondsLeft == 0){
+            active = false;
+        }
     }
+    
 }
 
 void Timer::render(){
@@ -52,11 +51,17 @@ void Timer::render(){
     string secondName = name+to_string(second);
     string tenthSecondName = name+to_string(tenthSecond);
     
-    outputFacade->addSprite(tenthMinuteName, 461, 22, 34);
-    outputFacade->addSprite(minuteName, 495, 22, 34);
-    outputFacade->addSprite("TimerSeparator", 531, 22, 10);
-    outputFacade->addSprite(tenthSecondName, 539, 22, 34);
-    outputFacade->addSprite(secondName, 573, 22, 34);
+    int timerX = (Constants::GAME_SCREEN_WIDTH-boardSize.x)/2;
+    int timerY = Constants::GAME_SCREEN_HEIGHT*0.02;
+    
+    outputFacade->addSprite("Board", timerX, timerY, boardSize.x);
+
+    
+    outputFacade->addSprite(tenthMinuteName,4+timerX, timerY+4, numberSize.x);
+    outputFacade->addSprite(minuteName, 4+timerX+numberSize.x, timerY+4, numberSize.x);
+    outputFacade->addSprite("TimerSeparator", 4+timerX+2*numberSize.x, timerY+4, separatorSize.x);
+    outputFacade->addSprite(tenthSecondName, 4+timerX+2*numberSize.x+separatorSize.x, timerY+4, numberSize.x);
+    outputFacade->addSprite(secondName, 4+timerX+3*numberSize.x+separatorSize.x, timerY+4, numberSize.x);
 }
 
 #pragma mark Actions:
@@ -87,4 +92,10 @@ int Timer::getMinutesFromSecondsLeft(){
 
 int Timer::getSecondsRemaining(){
     return secondsLeft%60;
+}
+
+#pragma mark Destructor:
+
+Timer::~Timer(){
+    
 }

@@ -9,17 +9,7 @@
 #include "Output.hpp"
 
 #pragma mark Setup
-Output::~Output(){
-    SDL_DestroyWindow(window);
-    SDL_DestroyRenderer(renderer);
-    for(map<string, SDL_Texture*>::iterator itr = loadedTextures.begin(); itr != loadedTextures.end(); itr++)
-    {
-        SDL_DestroyTexture(itr->second);
-    }
-    loadedTextures.clear();
-    SDL_Quit();
-    IMG_Quit();
-}
+
 
 void Output::init(){
     OutputInitException ex;
@@ -113,9 +103,8 @@ void Output::addSprite(string name,int x, int y, int width, int height, int angl
     destRect.x = x*winRes;
     destRect.y = y*winRes;
     
-    
-    
     destRect.w = width*winRes;
+    
     if(height == 0){
         int originalWidth = 0;
         int originalHeight = 0;
@@ -123,8 +112,6 @@ void Output::addSprite(string name,int x, int y, int width, int height, int angl
         height = (width*originalHeight / originalWidth);
     }
     destRect.h = height*winRes;
-   // destRect.w = originalWidth;
- //   SDL_RenderCopy(renderer, texture, NULL, &destRect);
     if(alpha != 255){
         SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_BLEND );
         SDL_SetTextureAlphaMod(texture, alpha );
@@ -142,4 +129,18 @@ Point Output::getSpriteDimensions(string name){
     toReturn.x = originalWidth/winRes;
     toReturn.y = originalHeight/winRes;
     return toReturn;
+}
+
+#pragma mark Destructor:
+
+Output::~Output(){
+    SDL_DestroyWindow(window);
+    SDL_DestroyRenderer(renderer);
+    for(map<string, SDL_Texture*>::iterator itr = loadedTextures.begin(); itr != loadedTextures.end(); itr++)
+    {
+        SDL_DestroyTexture(itr->second);
+    }
+    loadedTextures.clear();
+    SDL_Quit();
+    IMG_Quit();
 }

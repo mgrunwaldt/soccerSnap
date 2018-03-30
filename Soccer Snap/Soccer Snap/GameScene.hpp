@@ -18,6 +18,12 @@
 #include <string>
 #include <vector>
 
+#include "GameState.hpp"
+#include "GameLoading.hpp"
+#include "GamePlaying.hpp"
+#include "GamePaused.hpp"
+#include "GameFinished.hpp"
+
 using namespace std;
 
 
@@ -37,6 +43,9 @@ public:
     
     void addPoints(int pointsToAdd);
     void addOpponentPoints(int pointsToAdd);
+    
+    void updateField();
+    bool fieldLoaded();
     
 private:
     Output *output;
@@ -62,6 +71,8 @@ private:
     void renderPoints();
     
     void goToMainMenu();
+    
+    GameState* state;
     
 };
 

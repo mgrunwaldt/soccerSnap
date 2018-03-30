@@ -21,26 +21,15 @@ GameScene::GameScene(Output* o, Input* i){
 }
 
 void GameScene::load(){
+    state = new GameLoading();
     loadTimer();
     loadGUIElements();
     loadField();
 }
 
-void GameScene::setCountries(int countryPos){
-    selectedCountry = countries[countryPos];
-    bool foundCorrect = false;
-    while(!foundCorrect){
-        int randNum = rand()%(5);
-        if(randNum != countryPos){
-            opponentCountry = countries[randNum];
-            foundCorrect = true;
-        }
-    }
-}
 
 void GameScene::loadTimer(){
     gameTimer = new Timer(output,duration);
-    gameTimer->start();//NO
 }
 
 void GameScene::loadGUIElements(){
@@ -60,9 +49,27 @@ void GameScene::loadField(){
     field->load(selectedCountry,opponentCountry);
 }
 
+void GameScene::setCountries(int countryPos){
+    selectedCountry = countries[countryPos];
+    bool foundCorrect = false;
+    while(!foundCorrect){
+        int randNum = rand()%(5);
+        if(randNum != countryPos){
+            opponentCountry = countries[randNum];
+            foundCorrect = true;
+        }
+    }
+}
+
 #pragma mark Cycle:
 
 void GameScene::handleEvent(EventType e){
+    GameState* newState = state->handleInput(e,*this);
+    if(newState != NULL){
+        delete state;
+        state = newState;
+    }
+    /*
     homeButton->handleEvent(e);
     if(homeButton->isSelected()){
         goToMainMenu();
@@ -71,13 +78,32 @@ void GameScene::handleEvent(EventType e){
     if(pauseButton->isSelected()){
         //parar timer, poner play
     }
-    field->handleEvent(e);
+    field->handleEvent(e);*/
 }
+    
 void GameScene::update(){
-    field->update();
+    GameState* newState = state->update(*this);
+    if(newState != NULL){
+        delete state;
+        state = newState;
+    }
+    
+    /*field->update();
+    if(field->needsToStart()){
+        gameTimer->start();
+        field->start();
+    }
     if(gameTimer->isActive()){
         gameTimer->update();
-    }
+    }*/
+}
+
+void GameScene::updateField(){
+    field->update();
+}
+
+bool GameScene::fieldLoaded(){
+    return field->needsToStart();
 }
 
 void GameScene::render(){
@@ -148,8 +174,7 @@ void GameScene::renderPoints(){
 
 
 void GameScene::renderImages(){
-    output->addSprite("Field", 262, 92, 545);
-    output->addSprite("Board", 457, 18, 154);
+    output->addSprite("Field", (Constants::GAME_SCREEN_WIDTH-Constants::FIELD_WIDTH)/2, (Constants::GAME_SCREEN_HEIGHT-Constants::FIELD_WIDTH)/2, Constants::FIELD_WIDTH);
     output->addSprite("Board", 351, 645, 144,63);
     output->addSprite("Board", 577, 645, 144,63);
     output->addSprite("VsLabel", 521, 686, 34);

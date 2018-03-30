@@ -22,7 +22,6 @@ public:
     
     void render();
     void update();
-    void setPos(int gridX, int gridY);
     
     void start();
     void stop();
@@ -39,5 +38,9 @@ private:
     int getMinutesFromSecondsLeft ();
     int getSecondsRemaining();
     bool active;
+    
+    Point boardSize;
+    Point numberSize;
+    Point separatorSize;
 };
 #endif /* Timer_hpp */

@@ -132,7 +132,7 @@ void MainMenu::renderCountryButtons(){
         string labelExtension = "Label";
         string labelName = countries[i]+labelExtension;
         
-        output->addSprite(labelName, labelXPos, labelYPos, 175);
+        output->addSprite(labelName, labelXPos, labelYPos, backSize.x);
         output->addSprite(shirtName, shirtXPos, shirtYPos, shirtSize.x);
         
         
