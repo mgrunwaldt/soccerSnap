@@ -15,20 +15,24 @@
 #include <vector>
 #include <map>
 #include "Point.hpp"
+#include "Constants.hpp"
+#include "OutputInitException.hpp"
+
+using namespace std;
 
 class Output{
 public:
     ~Output();
     
-    bool init();
+    void init();
     void clearScreen();
     void drawScreen();
     
-    void addSprite(char* name,int x, int y, int width, int height=0, int angle = 0, int alpha = 255);
+    void addSprite(string name,int x, int y, int width, int height=0, int angle = 0, int alpha = 255);
     
-    Point getSpriteDimensions (char*name);
+    Point getSpriteDimensions (string name);
     
-    int getRes();
+    void setRes();
 private:
     enum resolutions{
         SD = 1,
@@ -38,9 +42,9 @@ private:
     SDL_Renderer* renderer;
     bool screenIsHd();
     int winRes;
-    void loadTexture(char* name);
-    SDL_Texture* getTexture(char* name);
-    std::map<std::string, SDL_Texture*> loadedTextures;
+    void loadTexture(string name);
+    SDL_Texture* getTexture(string name);
+    map<string, SDL_Texture*> loadedTextures;
     
 };
 

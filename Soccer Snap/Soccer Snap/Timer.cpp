@@ -28,7 +28,7 @@ void Timer::setPos(int x, int y){
 #pragma mark Game Cycle:
 
 void Timer::update(){
-    float secondsElapsed = Constants::frameDelay/1000;
+    float secondsElapsed = Constants::FRAME_DELAY/1000;
     timeLeft-=secondsElapsed;
     secondsLeft = ceilf(timeLeft);
     if(secondsLeft == 0){
@@ -45,29 +45,18 @@ void Timer::render(){
     int tenthSecond = seconds / 10 % 10;
     int second = seconds % 10;
     
-    std::string name = "Timer";
+    string name = "Timer";
     
-    std::string minuteName = name+std::to_string(minute);
-    char* minuteSpriteName = strdup(minuteName.c_str());
-    std::string tenthMinuteName = name+std::to_string(tenthMinute);
-    char* tenthMinuteSpriteName = strdup(tenthMinuteName.c_str());
-    std::string secondName = name+std::to_string(second);
-    char* secondSpriteName = strdup(secondName.c_str());
-    std::string tenthSecondName = name+std::to_string(tenthSecond);
-    char* tenthSecondSpriteName = strdup(tenthSecondName.c_str());
+    string minuteName = name+to_string(minute);
+    string tenthMinuteName = name+to_string(tenthMinute);
+    string secondName = name+to_string(second);
+    string tenthSecondName = name+to_string(tenthSecond);
     
-    outputFacade->addSprite(tenthMinuteSpriteName, 461, 22, 34);
-    outputFacade->addSprite(minuteSpriteName, 495, 22, 34);
+    outputFacade->addSprite(tenthMinuteName, 461, 22, 34);
+    outputFacade->addSprite(minuteName, 495, 22, 34);
     outputFacade->addSprite("TimerSeparator", 531, 22, 10);
-    outputFacade->addSprite(tenthSecondSpriteName, 539, 22, 34);
-    outputFacade->addSprite(secondSpriteName, 573, 22, 34);
-    
-
-    
-}
-
-void Timer::clean(){
-
+    outputFacade->addSprite(tenthSecondName, 539, 22, 34);
+    outputFacade->addSprite(secondName, 573, 22, 34);
 }
 
 #pragma mark Actions:

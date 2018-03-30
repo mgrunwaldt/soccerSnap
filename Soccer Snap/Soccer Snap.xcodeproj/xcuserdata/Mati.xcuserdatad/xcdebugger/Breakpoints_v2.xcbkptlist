@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Soccer Snap/Field.cpp"
-            timestampString = "543901916.8723871"
+            timestampString = "544086885.891241"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
             landmarkName = "Field::handleEvent(EventType e)"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Soccer Snap/Field.cpp"
-            timestampString = "543983443.485443"
+            timestampString = "544086885.891241"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "158"
-            endingLineNumber = "158"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
             landmarkName = "Field::update()"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,11 +42,53 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Soccer Snap/Field.cpp"
-            timestampString = "543989291.074182"
+            timestampString = "544086885.891241"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "161"
-            endingLineNumber = "161"
+            startingLineNumber = "162"
+            endingLineNumber = "162"
+            landmarkName = "Field::update()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            scope = "0"
+            stopOnStyle = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Soccer Snap/MainMenu.cpp"
+            timestampString = "544085138.2960401"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "MainMenu::handleEvent(EventType e)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Soccer Snap/Field.cpp"
+            timestampString = "544091246.533747"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
             landmarkName = "Field::update()"
             landmarkType = "7">
          </BreakpointContent>
@@ -58,12 +100,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Soccer Snap/Field.cpp"
-            timestampString = "543991376.672435"
+            timestampString = "544091261.28808"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "398"
-            endingLineNumber = "398"
-            landmarkName = "Field::makeSwitch()"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "Field::load(string myCountry, string opponentCountry)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -74,11 +116,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Soccer Snap/Gem.cpp"
-            timestampString = "543991061.161256"
+            timestampString = "544092572.180411"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "146"
-            endingLineNumber = "146"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "Gem::setNewDirection(int gridX, int gridY)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Soccer Snap/Gem.cpp"
+            timestampString = "544092572.180411"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
             landmarkName = "Gem::update()"
             landmarkType = "7">
          </BreakpointContent>
@@ -89,13 +147,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Soccer Snap/Field.cpp"
-            timestampString = "543991376.672435"
+            filePath = "Soccer Snap/Gem.cpp"
+            timestampString = "544092572.180411"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "182"
-            endingLineNumber = "182"
-            landmarkName = "Field::update()"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "Gem::setInitialAnimationPosition()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -106,12 +164,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Soccer Snap/Field.cpp"
-            timestampString = "543991376.672435"
+            timestampString = "544091346.969276"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "303"
-            endingLineNumber = "303"
-            landmarkName = "Field::destroyGems()"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "Field::load(string myCountry, string opponentCountry)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

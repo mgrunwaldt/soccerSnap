@@ -17,53 +17,64 @@ Gem::~Gem(){
     
 }
 
-void Gem::setSprite(char* countryName){
-    spriteName = countryName;
+Gem::Gem(string name){
+    spriteName = name;
 }
 
-void Gem::load(Output*output, int w, int h){
+
+void Gem::load(Output*output){
     outputFacade = output;
-    width = w;
-    height = h;
-    goingToPosition = false;
-    goingToFirstStop = false;
-    inPlace = false;
+    width = Constants::FIELD_WIDTH/Constants::GEMS_PER_ROW;
     selected = false;
     willBeDeleted = false;
-    goingDown = false;
+    moving = false;
+    goingToFirstStop = false;
 }
+
+#pragma mark Direction and Position:
 
 void Gem::setPos(int gridX, int gridY){
     x = fieldX+gridX*(width);
     y = fieldY+gridY*(width);
-    finalX = x;
-    finalY = y;
     boardX = gridX;
     boardY = gridY;
 }
 
+void Gem::setNewDirection(int gridX, int gridY){
+    moving = true;
+    finalX = fieldX+gridX*(width);
+    finalY = fieldY+gridY*(width);
+    float xDist = fieldX+boardX*(width) - x;
+    float yDist = fieldY+boardY*(width) - y;
+    float distance = sqrtf(xDist*xDist + yDist*yDist);
+    xVector = velocity * xDist / distance;
+    yVector = velocity * yDist / distance;
+}
+
 void Gem::setInitialAnimationPosition(){
-    goingToFirstStop = true;
-    firstStopY = 329;
-    y = firstStopY;
+    moving = true;
+    finalY = 329;
+    y = finalY;
     if(boardX<4){
-        firstStopX = 159;
+        finalX = 159;
         x = 52 - boardY*(width) - boardX*(4*width);
     }
     else{
-        firstStopX = 860;
+        finalX = 860;
         x = 967 + boardY*(width) + abs((boardX-7))*(4*width);
     }
-    float xDist = finalX - firstStopX;
-    float yDist = finalY - firstStopY;
-    float alpha = atanf(yDist/xDist);
-    xVector = velocity*cosf(alpha);
-    yVector = velocity*sinf(alpha);
-    if(boardX>=4){
-        xVector *=-1;
-        yVector *=-1;
-    }
+    float xDist = fieldX+boardX*(width) - x;
+    float yDist = 0;
+    float distance = sqrtf(xDist*xDist + yDist*yDist);
+    xVector = velocity * xDist / distance;
+    yVector = velocity * yDist / distance;
+    goingToFirstStop = true;
     
+}
+
+void Gem::setNextPos(int gridY){
+    boardY = gridY;
+    setNewDirection(boardX, boardY);
 }
 
 #pragma mark Game Cycle:
@@ -74,100 +85,45 @@ void Gem::render(){
         //willBeDeleted = false;
     }
     if(selected){
-        std::string name = "Selected";
-        
-        std::string minuteName = spriteName+name;
-        char* selectedSpriteName = strdup(minuteName.c_str());
-        outputFacade->addSprite(selectedSpriteName, x, y, width, height);
+        string name = "Selected";
+        string minuteName = spriteName+name;
+        outputFacade->addSprite(minuteName, x, y, width);
     }
     else{
-        outputFacade->addSprite(spriteName, x, y, width, height);
+        outputFacade->addSprite(spriteName, x, y, width);
     }
 }
 
 void Gem::update(){
-    if(goingToFirstStop){
-        if(boardX<4){
-            x += velocity;
-            if(x >= firstStopX){
-                goingToFirstStop = false;
-                goingToPosition = true;
-            }
-        }
-        else{
-            x -= velocity;
-            if(x <= firstStopX){
-                goingToFirstStop = false;
-                goingToPosition = true;
-            }
-        }
-    }
-    else if(goingToPosition){
+    if(moving){
         x += xVector;
         y += yVector;
         if(fabsf(finalX-x) < velocity && fabsf(finalY-y)<velocity){
             x = finalX;
             y = finalY;
-            goingToPosition = false;
-            inPlace = true;
+            moving = false;
+            if(goingToFirstStop){
+                goingToFirstStop = false;
+                setNewDirection(boardX, boardY);
+            }
             
         }
     }
-    else if (switching){
-        if(finalX>x+velocity){
-            x+=velocity;
-            if(finalX<=x+velocity)
-                switching = false;
-        }
-        else if(finalX<x-velocity){
-            x-=velocity;
-            if(finalX>=x-velocity)
-                switching = false;
-        }
-        else if(finalY>y+velocity){
-            y+=velocity;
-            if(finalY<=y+velocity)
-                switching = false;
-        }
-        else if(finalY<y-velocity){
-            y-=velocity;
-            if(finalY>=y-velocity)
-                switching = false;
-        }
-        
-    }
-    else if(needsDelete()){
+    else if(willBeDeleted){
         willBeDeleted = false;
     }
-    else if(goingDown){
-        if(finalY>y+velocity){
-            y+=velocity;
-            if(finalY<=y+velocity)
-                goingDown = false;
-        }
-    }
+
 }
 
-void Gem::clean(){
-    
-}
 
 #pragma mark Game Logic:
 
-void Gem::setDeleted(){
-    willBeDeleted = true;
-}
-
-bool Gem::needsDelete(){
-    return willBeDeleted;
-}
 void Gem::switchWithGem(int gridX,int gridY){
     boardX = gridX;
     boardY = gridY;
-    finalX = fieldX+gridX*(width);
-    finalY = fieldY+gridY*(width);
-    switching = true;
+    setNewDirection(gridX, gridY);
 }
+
 bool Gem::hasMouseInside(Point mousePosition){
     if( mousePosition.x < x || mousePosition.x > x + width ||mousePosition.y < y||mousePosition.y > y + width)
     {
@@ -176,8 +132,17 @@ bool Gem::hasMouseInside(Point mousePosition){
     return true;
 }
 
-bool Gem::isInPlace(){
-    return inPlace;
+void Gem::setDeleted(){
+    willBeDeleted = true;
+}
+
+bool Gem::needsDelete(){
+    return willBeDeleted;
+}
+
+
+bool Gem::isMoving(){
+    return moving;
 }
 
 bool Gem::isSelected(){
@@ -188,17 +153,6 @@ void Gem::setSelected(bool isSelected){
     selected = isSelected;
 }
 
-bool Gem::isSwitching(){
-    return switching;
+string Gem::getType(){
+    return spriteName;
 }
-
-bool Gem::isGoingDown(){
-    return goingDown;
-}
-
-void Gem::setNextPos(int gridY){
-    finalY = fieldY+gridY*(width);
-    boardY = gridY;
-    goingDown = true;
-}
-

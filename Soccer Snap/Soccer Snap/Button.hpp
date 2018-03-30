@@ -17,35 +17,26 @@ class Button{
 
     
 public:
-    //Initializes internal variables
-    Button(Output*o,Input*i,char* sprites[3]);
-    
-    //Sets top left position
-    void setPosition( int x, int y );
-    
-    //Handles mouse event
-    void handleEvent(EventType e);
-    
-    //Shows button sprite
-    void render();
-    
+    Button(Output*o,Input*i,string sprites[3]);
     void setAlphas(int alphas [3]);
+    
+    void setPosition( int x, int y );
+    void handleEvent(EventType e);
+    void render();
     
     bool isSelected();
     void setSelected (bool isSelected);
 private:
-    //Top left position
     Point position;
     Input* input;
     Output* output;
     
     bool mouseIsInside();
     bool selected;
-    char* buttonSprites[3];
+    string buttonSprites[3];
     int buttonAlphas[3];
     Point spriteDimensions[3];
 
-    //Currently used global sprite
     enum ButtonSprite
     {
         MOUSE_OUT = 0,

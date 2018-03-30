@@ -10,7 +10,7 @@
 
 #pragma mark Setup
 
-Button::Button(Output* o, Input* i,char* sprites[3])
+Button::Button(Output* o, Input* i,string sprites[3])
 {
     selected = false;
     position.x = 0;
@@ -50,10 +50,8 @@ void Button::setSelected(bool isSelected){
 
 void Button::handleEvent(EventType e )
 {
-    if(selected){
-        currentSprite = MOUSE_DOWN;
-    }
-    else if(e == EventType::MouseMotion || e == EventType::MouseUp || e == EventType::MouseDown){
+    
+    if(e == EventType::MouseMotion || e == EventType::MouseUp || e == EventType::MouseDown){
         if(!mouseIsInside()){
             currentSprite = MOUSE_OUT;
         }
@@ -85,5 +83,8 @@ bool Button::mouseIsInside(){
 #pragma mark Render
 
 void Button::render(){
+    if(selected){
+        currentSprite = MOUSE_DOWN;
+    }
     output->addSprite(buttonSprites[currentSprite], position.x, position.y, spriteDimensions[currentSprite].x, spriteDimensions[currentSprite].y,0,buttonAlphas[currentSprite]);
 }

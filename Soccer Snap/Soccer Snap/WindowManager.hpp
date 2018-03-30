@@ -17,9 +17,14 @@
 #include "MainMenu.hpp"
 #include "GameScene.hpp"
 #include "Constants.hpp"
+#include "OutputInitException.hpp" 
 
 #include <chrono>
 #include <thread>
+#include <ostream>
+
+using namespace std;
+
 
 class WindowManager{
 public:
@@ -32,7 +37,6 @@ public:
     
     void presentScene();
     
-    
 private:
     Output *output;
     Input * input;
@@ -42,7 +46,9 @@ private:
     MainMenu * mainMenuScene;
     GameScene* gameScene;
     
-    void disposeScreens();
-    void render();
+    bool gameRunning;
+    Uint32 frameStart;
+    float frameTime;
+
 };
 #endif /* WindowManager_hpp */

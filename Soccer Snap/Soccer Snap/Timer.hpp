@@ -22,7 +22,6 @@ public:
     
     void render();
     void update();
-    void clean();
     void setPos(int gridX, int gridY);
     
     void start();

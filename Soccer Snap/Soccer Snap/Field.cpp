@@ -14,18 +14,19 @@ Field::Field(Output* o, Input* i){
     output = o;
     input = i;
 }
-void Field::load(char* myCountry, char* opponentCountry){
+void Field::load(string myCountry, string opponentCountry){
     player = myCountry;
     opponent = opponentCountry;
     firstGem = NULL;
     secondGem = NULL;
+    srand(time(NULL));
     for(int i=0;i<8;i++){
         for(int j=0;j<8;j++){
             Gem* newGem = getRandomGem();
             while (!canPlaceGem(i, j, newGem)) {
                 newGem = getRandomGem();
             }
-            newGem->load(output, 65);
+            newGem->load(output);
             newGem->setPos(i, j);
             newGem->setInitialAnimationPosition();
             gems[i][j] = newGem;
@@ -80,7 +81,7 @@ void Field::handleEvent(EventType e){
                 }
 
             }
-            catch (MouseOutFieldException* e){
+            catch (MouseOutFieldException e){
                 if(firstGem!= NULL){
                     firstGem->setSelected(false);
                     firstGem = NULL;
@@ -101,7 +102,7 @@ void Field::update(){
             for(int j=0;j<8;j++){
                 Gem* toDraw = gems[i][j];
                 toDraw->update();
-                if(!toDraw->isInPlace())
+                if(toDraw->isMoving())
                     allOk = false;
             }
         }
@@ -127,7 +128,7 @@ void Field::update(){
         secondGem->setSelected(false);
         firstGem->update();
         secondGem->update();
-        if(!firstGem->isSwitching() && !secondGem->isSwitching()){
+        if(!firstGem->isMoving() && !secondGem->isMoving()){
             if(makeSwitch()){
                 state = FieldStates::PREPARING_DESTRUCTION;
                 //borrar, llenar, animar, makeswitch
@@ -148,7 +149,7 @@ void Field::update(){
     else if(state == SWITCHING_BACK){
         firstGem->update();
         secondGem->update();
-        if(!firstGem->isSwitching() && !secondGem->isSwitching()){
+        if(!firstGem->isMoving() && !secondGem->isMoving()){
             state = FieldStates::WAITING;
             firstGem = NULL;
             secondGem = NULL;
@@ -168,7 +169,7 @@ void Field::update(){
             for(int j=0;j<8;j++){
                 Gem* toDraw = gems[i][j];
                 toDraw->update();
-                if(toDraw->isGoingDown()){
+                if(toDraw->isMoving()){
                     isGoingDown = true;
                 }
             }
@@ -278,22 +279,20 @@ Gem* Field::getRandomGem(){
     int randNum = rand()%(5) + 1;
     switch (randNum) {
         case 1:
-            newGem = new Player();//pasar aca el spriteName
-            newGem->setSprite(player);
+            newGem = new Gem(player);
             break;
         case 2:
-            newGem = new Rival();
-            newGem->setSprite(opponent);
+            newGem = new Gem(opponent);
             break;
         case 3:
-            newGem = new Goalkeeper();
+            newGem = new Gem("Goalkeeper");
             break;
         case 4:
-            newGem = new Referee();
+            newGem = new Gem("Referee");
             break;
             
         default:
-            newGem = new Ball();
+            newGem = new Gem("Ball");
             break;
     }
     return newGem;
@@ -301,13 +300,13 @@ Gem* Field::getRandomGem(){
 
 void Field::destroyGems(){
     for(int x = 0;x<8;x++){
-        std::vector<int> columnToDelete = toDeleteY[x];
+        vector<int> columnToDelete = toDeleteY[x];
         if(columnToDelete.size() > 0){
             for(int y = 7; y>=0; y--){
                 if(gems[x][y]->needsDelete()){
                     gemsToDestroy.push_back(gems[x][y]);
                 }
-                std::sort(columnToDelete.begin(), columnToDelete.end(), std::greater<int>());
+                sort(columnToDelete.begin(), columnToDelete.end(), greater<int>());
 
                 int yToDelete = columnToDelete.front();
                 
@@ -328,7 +327,7 @@ void Field::destroyGems(){
             while (!columnToDelete.empty()) {
                 int yToFill = columnToDelete.front();
                 Gem* newGem = getRandomGem();
-                newGem->load(output, 65);
+                newGem->load(output);
                 newGem->setPos(x, remainingCounter-1);
                 newGem->setNextPos(yToFill);
                 gems[x][yToFill] = newGem;
@@ -347,7 +346,7 @@ bool Field::makeSwitch(){//Falta inicializar toDeleteY??
     clearGemsToDelete();
     bool switchMade = false;
     for(int x = 0;x<8;x++){
-        std::vector<int> columnToDelete;
+        vector<int> columnToDelete;
         
         int currentY = 0;
         while (currentY<8){
@@ -394,9 +393,9 @@ bool Field::makeSwitch(){//Falta inicializar toDeleteY??
             if(equalsInARow >=3){//FALTA NO AGREGAR DUPLICADOS!!!
                 switchMade = true;
                 for (int xToAdd = currentX; xToAdd<currentX+equalsInARow;xToAdd++){
-                    std::vector<int> columnToDelete = toDeleteY[xToAdd];
+                    vector<int> columnToDelete = toDeleteY[xToAdd];
                     gems[xToAdd][y] ->setDeleted();
-                    if (std::find(columnToDelete.begin(), columnToDelete.end(),y)==columnToDelete.end()){
+                    if (find(columnToDelete.begin(), columnToDelete.end(),y)==columnToDelete.end()){
                         columnToDelete.push_back(y);
                         toDeleteY[xToAdd] = columnToDelete;
                         
@@ -410,3 +409,8 @@ bool Field::makeSwitch(){//Falta inicializar toDeleteY??
     return switchMade;
 }
 
+#pragma mark Destructor:
+
+Field::~Field(){
+
+}

@@ -7,25 +7,23 @@
 //
 
 #include "GameScene.hpp"
-#pragma mark Setup:
+
+#pragma mark Inicialization:
 
 GameScene::GameScene(Output* o, Input* i){
     output = o;
     input = i;
     active = true;
     points = 0;
-    opponentPoints = 1500;//Cambiar
-}
-
-GameScene::~GameScene(){
-    
+    opponentPoints = Constants::TARGET_POINTS;
+    duration = Constants::MATCH_TIME;
+    srand(time(NULL));
 }
 
 void GameScene::load(){
     loadTimer();
     loadGUIElements();
     loadField();
-    
 }
 
 void GameScene::setCountries(int countryPos){
@@ -40,28 +38,40 @@ void GameScene::setCountries(int countryPos){
     }
 }
 
-void GameScene::setDuration(int time){
-    duration = time;
-}
 void GameScene::loadTimer(){
     gameTimer = new Timer(output,duration);
-    gameTimer->start();
+    gameTimer->start();//NO
+}
+
+void GameScene::loadGUIElements(){
+    string pauseButtonSprites[3]={"PauseButtonOut","PauseButtonOver","PauseButtonIn"};
+    pauseButton = new Button(output,input,pauseButtonSprites);
+    pauseButton->setPosition(342, 23);
+    
+    string menuButtonSprites[3]={"MenuButtonOut","MenuButtonOver","MenuButtonIn"};
+    homeButton = new Button(output,input,menuButtonSprites);
+    homeButton->setPosition(272, 23);
+    
+    
+}
+
+void GameScene::loadField(){
+    field = new Field(output, input);
+    field->load(selectedCountry,opponentCountry);
 }
 
 #pragma mark Cycle:
 
-void GameScene::handleEvents(){
-    while (input->eventsLeft()) {
-        EventType e = input->checkEvent();
-        homeButton->handleEvent(e);
-        if(homeButton->isSelected()){
-            goToMainMenu();
-            break;
-        }
-        pauseButton->handleEvent(e);
-        field->handleEvent(e);
+void GameScene::handleEvent(EventType e){
+    homeButton->handleEvent(e);
+    if(homeButton->isSelected()){
+        goToMainMenu();
     }
-    
+    pauseButton->handleEvent(e);
+    if(pauseButton->isSelected()){
+        //parar timer, poner play
+    }
+    field->handleEvent(e);
 }
 void GameScene::update(){
     field->update();
@@ -71,20 +81,14 @@ void GameScene::update(){
 }
 
 void GameScene::render(){
-    output->clearScreen();
-    
     renderImages();
     renderPoints();
     gameTimer->render();
     homeButton->render();
     pauseButton->render();
-    output->drawScreen();
     
 }
 
-void GameScene::clean(){
-    
-}
 
 #pragma mark Actions:
 void GameScene::addPoints(int pointsToAdd){
@@ -105,7 +109,7 @@ void GameScene::goToMainMenu(){
 
 
 
-#pragma mark: GUI Load
+#pragma mark Render:
 
 void GameScene::renderPoints(){
     int thousandPlayerPointUnit = points/1000 % 10;
@@ -118,17 +122,17 @@ void GameScene::renderPoints(){
     int tenOpponentPointUnit = opponentPoints/10 % 10;
     int opponentPointUnit = opponentPoints% 10;
     
-    std::string name = "Score";
+    string name = "Score";
 
-    char* thousandPlayerPointSpriteName = strdup((name+std::to_string(thousandPlayerPointUnit)).c_str());
-    char* hundredPlayerPointSpriteName = strdup((name+std::to_string(hundredPlayerPointUnit)).c_str());
-    char* tenPlayerPointSpriteName = strdup((name+std::to_string(tenPlayerPointUnit)).c_str());
-    char* playerPointSpriteName = strdup((name+std::to_string(playerPointUnit)).c_str());
-
-    char* thousandOpponentPointSpriteName = strdup((name+std::to_string(thousandOpponentPointUnit)).c_str());
-    char* hundredOpponentPointSpriteName = strdup((name+std::to_string(hundredOpponentPointUnit)).c_str());
-    char* tenOpponentPointSpriteName = strdup((name+std::to_string(tenOpponentPointUnit)).c_str());
-    char* opponentPointSpriteName = strdup((name+std::to_string(opponentPointUnit)).c_str());
+    string thousandPlayerPointSpriteName = name+to_string(thousandPlayerPointUnit);
+    string hundredPlayerPointSpriteName = name+to_string(hundredPlayerPointUnit);
+    string tenPlayerPointSpriteName = name+to_string(tenPlayerPointUnit);
+    string playerPointSpriteName = name+to_string(playerPointUnit);
+    
+    string thousandOpponentPointSpriteName = name+to_string(thousandOpponentPointUnit);
+    string hundredOpponentPointSpriteName = name+to_string(hundredOpponentPointUnit);
+    string tenOpponentPointSpriteName = name+to_string(tenOpponentPointUnit);
+    string opponentPointSpriteName = name+to_string(opponentPointUnit);
     
     output->addSprite(thousandPlayerPointSpriteName, 355, 649, 34);
     output->addSprite(hundredPlayerPointSpriteName, 389, 649, 34);
@@ -157,32 +161,21 @@ void GameScene::renderImages(){
     output->addSprite("UruguayFans", -55, 0, 265,720);
     output->addSprite("UruguayFans", 862, 0,265, 720,180);
     
-    std::string name = "Menu";
-    std::string countryString = selectedCountry;
-    std::string opponentString = opponentCountry;
+    string name = "Menu";
+    string countryString = selectedCountry+name;
+    string opponentString = opponentCountry+name;
     
-    char* myCountryName = strdup((countryString+name).c_str());
-    char* opponentCountryName = strdup((opponentString+name).c_str());
-
-    output->addSprite(myCountryName, 283, 645, 51);
-    output->addSprite(opponentCountryName, 736, 645, 51);
+    output->addSprite(countryString, 283, 645, 51);
+    output->addSprite(opponentString, 736, 645, 51);
     
 }
 
-void GameScene::loadGUIElements(){
-    char* pauseButtonSprites[3]={"PauseButtonOut","PauseButtonOver","PauseButtonIn"};
-    pauseButton = new Button(output,input,pauseButtonSprites);
-    pauseButton->setPosition(342, 23);
-    
-    char* menuButtonSprites[3]={"MenuButtonOut","MenuButtonOver","MenuButtonIn"};
-    homeButton = new Button(output,input,menuButtonSprites);
-    homeButton->setPosition(272, 23);
-   
-    
-}
 
-void GameScene::loadField(){
-    field = new Field(output, input);
-    field->load(selectedCountry,opponentCountry);
 
+#pragma mark Destructor:
+GameScene::~GameScene(){
+    delete homeButton;
+    delete pauseButton;
+    delete gameTimer;
+    delete field;
 }

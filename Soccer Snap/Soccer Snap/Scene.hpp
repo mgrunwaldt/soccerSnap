@@ -13,15 +13,12 @@ class Scene
 {
 public:
     virtual void load() = 0;
-    virtual void handleEvents() = 0;
+    virtual void handleEvent(EventType e) = 0;
     virtual void update() = 0;
     virtual void render() = 0;
-    virtual void clean() = 0;
     
     virtual bool isActive() = 0;
-    
-protected:
-    virtual ~Scene(){};
+
     
 };
 #endif /* Scene_hpp */

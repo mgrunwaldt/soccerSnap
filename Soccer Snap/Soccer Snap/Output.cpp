@@ -12,26 +12,35 @@
 Output::~Output(){
     SDL_DestroyWindow(window);
     SDL_DestroyRenderer(renderer);
+    for(map<string, SDL_Texture*>::iterator itr = loadedTextures.begin(); itr != loadedTextures.end(); itr++)
+    {
+        SDL_DestroyTexture(itr->second);
+    }
     loadedTextures.clear();
-    window = NULL;
-    renderer = NULL;
     SDL_Quit();
     IMG_Quit();
 }
 
-bool Output::init(){
+void Output::init(){
+    OutputInitException ex;
     if(SDL_Init(SDL_INIT_EVERYTHING)==0){
-        window = SDL_CreateWindow("Title", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1072, 720, SDL_WINDOW_ALLOW_HIGHDPI);
+        window = SDL_CreateWindow("Title", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, Constants::GAME_SCREEN_WIDTH, Constants::GAME_SCREEN_HEIGHT, SDL_WINDOW_ALLOW_HIGHDPI);
         if(window){
             renderer = SDL_CreateRenderer(window, -1, 0);
             if(renderer){
                 SDL_SetRenderDrawColor(renderer, 0, 103, 20, 255);
                 SDL_RenderClear(renderer);
-                return true;
-            }
+                setRes();
+                return;
+            } else
+                ex.setMessage("Couldn't create Renderer");
         }
+        else
+            ex.setMessage("Couldn't create Window");
     }
-    return false;
+    else
+        ex.setMessage(SDL_GetError());
+    throw ex;
 }
 
 
@@ -56,27 +65,26 @@ bool Output::screenIsHd(){
     return false;;
 }
 
-int Output::getRes(){
+void Output::setRes(){
     if(screenIsHd()){
         winRes = HIGH;
     }
     else winRes = SD;
-    return winRes;
 }
 
 #pragma mark Images
-void Output::loadTexture(char* name){
+void Output::loadTexture(string name){
     SDL_Texture* texture;
     
-    std::string folder = "assets/";
-    std::string extension = ".png";
-    std::string location = folder+name+extension;
+    string folder = "assets/";
+    string extension = ".png";
+    string location = folder+name+extension;
     char* spriteName = strdup(location.c_str());
     SDL_Surface* pTempSurface = IMG_Load(spriteName);
     free(spriteName);
     if( pTempSurface == NULL )
     {
-        printf( "Unable to load image %s! SDL_image Error: %s\n",name, IMG_GetError() );
+        printf( "Unable to load image %s! SDL_image Error: %s\n",name.c_str(), IMG_GetError() );
     }
     texture = SDL_CreateTextureFromSurface(renderer, pTempSurface);
     
@@ -85,7 +93,7 @@ void Output::loadTexture(char* name){
     loadedTextures[name] = texture;
 }
 
-SDL_Texture* Output::getTexture(char* name){
+SDL_Texture* Output::getTexture(string name){
     SDL_Texture* texture = loadedTextures[name];
     if(texture == nullptr){
         loadTexture(name);
@@ -96,11 +104,11 @@ SDL_Texture* Output::getTexture(char* name){
 
 
 
-void Output::addSprite(char* name,int x, int y, int width, int height, int angle, int alpha){
+void Output::addSprite(string name,int x, int y, int width, int height, int angle, int alpha){
     SDL_Texture * texture = getTexture(name);
     SDL_Rect destRect;
    
-    winRes = getRes();
+    setRes();
     
     destRect.x = x*winRes;
     destRect.y = y*winRes;
@@ -125,7 +133,7 @@ void Output::addSprite(char* name,int x, int y, int width, int height, int angle
 
 }
 
-Point Output::getSpriteDimensions(char* name){
+Point Output::getSpriteDimensions(string name){
     SDL_Texture * texture = getTexture(name);
     int originalWidth = 0;
     int originalHeight = 0;

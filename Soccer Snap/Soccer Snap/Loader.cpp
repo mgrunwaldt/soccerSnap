@@ -8,58 +8,77 @@
 
 #include "Loader.hpp"
 
-float logoX = -739;
-float ballX = -300;
-float finalLogoX = 123;
-float finalBallX = 773;
 
-float logoXPerSecond;
-float ballXPerSecond;
-
-int ballRotation = 0;
+#pragma mark Inicialization:
 
 Loader::Loader(Output* o, Input* i){
     output = o;
     input = i;
     loading = true;
-}
-
-Loader::~Loader(){
-
+    animating = true;
 }
 
 void Loader::load(){
-    logoXPerSecond = (finalLogoX-logoX)/(Constants::FPS*Constants::loaderSeconds);
-    ballXPerSecond = (finalBallX-ballX)/(Constants::FPS*Constants::loaderSeconds);
-    output->addSprite("LogoBall", ballX, 203, 175, 0, ballRotation);
-    output->addSprite("Logo", logoX, 240, 739);
+    setPositions();
 }
 
-void Loader::handleEvents(){
+void Loader::setPositions(){
+    ballDimensions = output->getSpriteDimensions("LogoBall");
+    logoDimensions = output->getSpriteDimensions("Logo");
     
+    float combinedWidth = logoDimensions.x*(9.0/8.0);
+    float combinedHeight = logoDimensions.y*(48.0/41.0);
+    
+    logoX = -logoDimensions.x;
+    ballX = logoX - ballDimensions.x;
+    finalLogoX = Constants::GAME_SCREEN_WIDTH/2 - (combinedWidth/2);
+    finalBallX = finalLogoX + Constants::LOGO_BALL_X_PROPORTION * logoDimensions.x;
+    
+    ballY = Constants::GAME_SCREEN_HEIGHT/2 - combinedHeight/2;
+    logoY = ballY + Constants::BALL_LOGO_Y_PROPORTION * ballDimensions.y;
+    
+    logoXPerSecond = (finalLogoX-logoX)/(Constants::FPS*Constants::LOADER_ANIMATION_SECONDS);
+    ballXPerSecond = (finalBallX-ballX)/(Constants::FPS*Constants::LOADER_ANIMATION_SECONDS);
 }
-void Loader::update(){
-    logoX+=logoXPerSecond;
-    ballX+=ballXPerSecond;
-    ballRotation+=2;
-    if(logoX>=finalLogoX && ballX>= finalBallX){
+
+#pragma mark Game Cycle:
+
+void Loader::handleEvent(EventType e){
+    if(e == EventType::MouseUp){
         loading = false;
     }
 }
 
-void Loader::render(){
-    output->clearScreen();
-    output->addSprite("LogoBall", ballX, 203, 175, 0, ballRotation);
-    output->addSprite("Logo", logoX, 240, 739);
-
-    output->drawScreen();
-}
-
-void Loader::clean(){
+void Loader::update(){
+    if(animating){
+        logoX+=logoXPerSecond;
+        ballX+=ballXPerSecond;
+        ballRotation+=2;
+        if(logoX>=finalLogoX && ballX>= finalBallX){
+            animating = false;
+            timeLeft = Constants::LOADER_WAITING_SECONDS;
+        }
+    }
+    if(!animating){
+        timeLeft -= 1/Constants::FPS;
+        if(timeLeft<=0)
+            loading = false;
+    }
     
 }
 
+void Loader::render(){
+    output->addSprite("LogoBall", ballX, ballY, ballDimensions.x, 0, ballRotation);
+    output->addSprite("Logo", logoX, logoY, logoDimensions.x);
+}
 
 bool Loader::isActive(){
     return loading;
 }
+
+#pragma mark Delete
+
+Loader::~Loader(){
+    
+}
+

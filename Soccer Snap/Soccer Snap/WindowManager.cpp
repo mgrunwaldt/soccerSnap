@@ -8,38 +8,24 @@
 
 #include "WindowManager.hpp"
 
-
-Uint32 frameStart;
-float frameTime;
-
+#pragma mark Inicialization:
 
 WindowManager::WindowManager(){
-    output = new Output();
-    input = new Input();
-    output->init();
-}
-
-WindowManager::~WindowManager(){
+    try{
+        output = new Output();
+        input = new Input();
+        output->init();
+        gameRunning = true;
+        
+    }
+    catch (OutputInitException ex){
+        cout << ex.what() << endl;
+        cout << ex.getMessage() << endl;
+    }
     
 }
 
-void WindowManager::presentScene(){
- //   std::this_thread::sleep_for(std::chrono::milliseconds(2000));
-
-    while (activeScene->isActive()) {
-        frameStart = Tools::getTicks();
-        
-        activeScene->handleEvents();
-        activeScene->update();
-        activeScene->render();
-        
-        frameTime = Tools::getTicks()- frameStart;
-        if(Constants::frameDelay>frameTime){
-            Tools::delay(Constants::frameDelay-frameTime);
-        }
-    }
-
-}
+#pragma mark Scene Presentation:
 
 void WindowManager::showLoader(){
     loaderScene = new Loader(output, input);
@@ -47,8 +33,9 @@ void WindowManager::showLoader(){
     activeScene = loaderScene;
     presentScene();
     delete loaderScene;
-    this->showMainMenu();
-    
+    if(gameRunning){
+        this->showMainMenu();
+    }
 }
 
 void WindowManager::showMainMenu(){
@@ -58,40 +45,57 @@ void WindowManager::showMainMenu(){
     presentScene();
     int chosenCountry = mainMenuScene->getChosenCountry();
     delete mainMenuScene;
-    showGameScreen(chosenCountry);
-    
+    if(gameRunning){
+        showGameScreen(chosenCountry);
+    }
 }
 
 void WindowManager::showGameScreen(int country){
     gameScene = new GameScene(output,input);
     gameScene->setCountries(country);
-    gameScene->setDuration(130);
     gameScene->load();
     activeScene = gameScene;
     presentScene();
     delete gameScene;
-    showMainMenu();
-    /*game = new Game();
-     game->init();
-     game->run();*/
+    if(gameRunning){
+        showMainMenu();
+    }
 }
 
-/*
-void WindowManager::render(){
-    output->clearScreen();
-    //dibujo todo
-    field->drawField();
-    
-    
-    
-    output->drawScreen();
-    
-}
-*/
+void WindowManager::presentScene(){
+    while (activeScene->isActive() && gameRunning) {
+        frameStart = Tools::getTicks();
+        while (input->eventsLeft()) {
+            EventType e = input->checkEvent();
+            if(e != EventType::Unknown){
+                if(e == EventType::Exit){
+                    gameRunning = false;
+                }
+                activeScene->handleEvent(e);
+            }
+            
+        }
+        
+        activeScene->update();
+        output->clearScreen();
+        activeScene->render();
+        output->drawScreen();
+        frameTime = Tools::getTicks()- frameStart;
+        if(Constants::FRAME_DELAY>frameTime){
+            Tools::delay(Constants::FRAME_DELAY-frameTime);
+        }
+    }
+    if(!gameRunning){
+        delete this;
+    }
 
-/*
-    while activeScene->isRunning
-        activeScene->handleEvents
-        activeScene->update
-        activeScene->render
- */
+}
+
+
+
+#pragma mark Delete:
+
+WindowManager::~WindowManager(){
+    delete output;
+    delete input;
+}

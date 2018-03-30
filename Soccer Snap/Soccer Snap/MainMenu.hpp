@@ -22,31 +22,33 @@ public:
     MainMenu(Output* o, Input* i);
     ~MainMenu();
     
-    
     void load();
-    void handleEvents();
+    void handleEvent(EventType e);
     void update();
     void render();
-    void clean();
     
     bool isActive();
     int getChosenCountry();
     
     
 private:
-    Output *output;
+    Output * output;
     Input * input;
     bool active;
-    char* countries[5]= {"Uruguay","Portugal","England","Brazil","Russia"};
+    string countries[5] = {"Uruguay","Portugal","England","Brazil","Russia"};
     int selectedCountry;
-    char* logo;
-    char* logoBall;
+    
+    float ballX,ballY,logoX,logoY;
+    Point ballDimensions, logoDimensions, pickTeamDimensions, separatorDimensions;
     
     Button* playButton;
     Button* countryButtons[5];
     
     void loadPlayButton();
     void loadCountries();
+    void loadPositions();
+    void renderCountryButtons();
+    void renderStaticImages();
     
 };
 #endif /* MainMenu_hpp */

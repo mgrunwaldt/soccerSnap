@@ -13,35 +13,39 @@
 #include "Output.hpp"
 #include <string>
 
+
+
 class Gem: public GameObject{
+
 
     
 public:
+    ~Gem();
+    Gem(string name);
+    
     void render();
     void update();
-    void clean();
+    void load(Output* output);
+    
     void setPos(int gridX, int gridY);
-    virtual void load(Output* output, int w, int h=0);
-    virtual char* getType()=0;
-    void setSprite(char* spriteName);
-    bool isSelected();
-    void setSelected(bool isSelected);
-    
     void setInitialAnimationPosition();
+    void setNewDirection(int gridX, int gridY);
     void switchWithGem (int gridX,int gridY);
-    bool isInPlace();
-    bool isSwitching();
-    bool isGoingDown();
-    bool hasMouseInside (Point mousePosition);
+
+    void setSelected(bool isSelected);
+    bool isSelected();
+    bool isMoving();
     
-    int boardX;
-    int boardY;
+    bool hasMouseInside (Point mousePosition);
     
     void setDeleted();
     bool needsDelete();
     void setNextPos(int gridY);
     
-    ~Gem();
+    string getType();
+    
+    int boardX;
+    int boardY;
 private:
     Output* outputFacade;
     float x;
@@ -52,23 +56,15 @@ private:
     float yVector;
     
     int width;
-    int height;
     bool selected;
-    int initialXPosition;
-    int initialYPosition;
-    int firstStopX;
-    int firstStopY;
-    bool goingToFirstStop;
-    bool goingToPosition;
-    bool inPlace;
-    bool switching;
+    bool moving;
     bool willBeDeleted;
-    bool goingDown;
+    bool goingToFirstStop;
     
     
     
 protected:
-    char* spriteName;
+    string spriteName;
     
 };
 #endif /* Gem_hpp */

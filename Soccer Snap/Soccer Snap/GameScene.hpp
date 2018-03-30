@@ -18,6 +18,8 @@
 #include <string>
 #include <vector>
 
+using namespace std;
+
 
 class GameScene:public Scene{
 public:
@@ -26,13 +28,11 @@ public:
     
     
     void load();
-    void handleEvents();
+    void handleEvent(EventType e);
     void update();
     void render();
-    void clean();
     
     void setCountries(int countryPos);
-    void setDuration(int time);
     bool isActive();
     
     void addPoints(int pointsToAdd);
@@ -45,15 +45,12 @@ private:
     int points;
     int opponentPoints;
     bool active;
-    char* countries[5]= {"Uruguay","Portugal","England","Brazil","Russia"};
-    char* selectedCountry;
-    char* opponentCountry;
-    char* logo;
-    char* logoBall;
+    string countries[5]= {"Uruguay","Portugal","England","Brazil","Russia"};
+    string selectedCountry;
+    string opponentCountry;
     
     Button* homeButton;
     Button* pauseButton;
-    Button* countryButtons[5];
     
     Timer* gameTimer;
     Field* field;
