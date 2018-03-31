@@ -142,6 +142,9 @@ bool Gem::needsDelete(){
     return willBeDeleted;
 }
 
+void Gem::setMoving(bool move){
+    moving = move;
+}
 
 bool Gem::isMoving(){
     return moving;

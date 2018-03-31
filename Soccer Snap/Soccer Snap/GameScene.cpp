@@ -8,6 +8,7 @@
 
 #include "GameScene.hpp"
 
+
 #pragma mark Inicialization:
 
 GameScene::GameScene(Output* o, Input* i){
@@ -16,7 +17,6 @@ GameScene::GameScene(Output* o, Input* i){
     active = true;
     points = 0;
     opponentPoints = Constants::TARGET_POINTS;
-    duration = Constants::MATCH_TIME;
     srand(time(NULL));
 }
 
@@ -27,12 +27,15 @@ void GameScene::load(){
     loadField();
 }
 
-
 void GameScene::loadTimer(){
-    gameTimer = new Timer(output,duration);
+    gameTimer = new Timer(output,Constants::MATCH_TIME);
 }
 
 void GameScene::loadGUIElements(){
+    string playButtonSprites[3]={"PlayButtonOut","PlayButtonOver","PlayButtonIn"};
+    playButton = new Button(output,input,playButtonSprites);
+    playButton->setPosition(342, 23);
+    
     string pauseButtonSprites[3]={"PauseButtonOut","PauseButtonOver","PauseButtonIn"};
     pauseButton = new Button(output,input,pauseButtonSprites);
     pauseButton->setPosition(342, 23);
@@ -40,8 +43,6 @@ void GameScene::loadGUIElements(){
     string menuButtonSprites[3]={"MenuButtonOut","MenuButtonOver","MenuButtonIn"};
     homeButton = new Button(output,input,menuButtonSprites);
     homeButton->setPosition(272, 23);
-    
-    
 }
 
 void GameScene::loadField(){
@@ -61,49 +62,27 @@ void GameScene::setCountries(int countryPos){
     }
 }
 
+
 #pragma mark Cycle:
 
 void GameScene::handleEvent(EventType e){
+    homeButton->handleEvent(e);
+    if(homeButton->isSelected()){
+        active = false;
+    }
     GameState* newState = state->handleInput(e,*this);
     if(newState != NULL){
         delete state;
         state = newState;
     }
-    /*
-    homeButton->handleEvent(e);
-    if(homeButton->isSelected()){
-        goToMainMenu();
-    }
-    pauseButton->handleEvent(e);
-    if(pauseButton->isSelected()){
-        //parar timer, poner play
-    }
-    field->handleEvent(e);*/
 }
-    
+
 void GameScene::update(){
     GameState* newState = state->update(*this);
     if(newState != NULL){
         delete state;
         state = newState;
     }
-    
-    /*field->update();
-    if(field->needsToStart()){
-        gameTimer->start();
-        field->start();
-    }
-    if(gameTimer->isActive()){
-        gameTimer->update();
-    }*/
-}
-
-void GameScene::updateField(){
-    field->update();
-}
-
-bool GameScene::fieldLoaded(){
-    return field->needsToStart();
 }
 
 void GameScene::render(){
@@ -111,12 +90,40 @@ void GameScene::render(){
     renderPoints();
     gameTimer->render();
     homeButton->render();
-    pauseButton->render();
+    state->render(*this);
     
 }
 
 
+#pragma mark State Actions
+
+void GameScene::updateTimer(){
+    gameTimer->update();
+}
+
+void GameScene::updateField(){
+    field->update();
+}
+
+void GameScene::handleFieldEvent(EventType e){
+    field->handleEvent(e);
+}
+
+void GameScene::skipLoader(){
+    field->skipLoader();
+}
+
+void GameScene::showPauseButton(){
+    pauseButton->render();
+}
+
+void GameScene::showPlayButton(){
+    playButton->render();
+}
+
+
 #pragma mark Actions:
+
 void GameScene::addPoints(int pointsToAdd){
     points+=pointsToAdd;
 }
@@ -125,14 +132,27 @@ void GameScene::addOpponentPoints(int pointsToAdd){
     opponentPoints += pointsToAdd;
 }
 
+void GameScene::hideEndAnimation(){
+    active = false;
+}
+
+#pragma mark Conditions:
+
+bool GameScene::hasFinished(){
+    return !gameTimer->hasTimeLeft();
+}
+
+bool GameScene::hasWon(){
+    return points>opponentPoints;
+}
+
 bool GameScene::isActive(){
     return active;
 }
 
-void GameScene::goToMainMenu(){
-    active = false;
+bool GameScene::fieldLoaded(){
+    return field->isReadyToStart();
 }
-
 
 
 #pragma mark Render:
@@ -172,9 +192,9 @@ void GameScene::renderPoints(){
 
 }
 
-
 void GameScene::renderImages(){
     output->addSprite("Field", (Constants::GAME_SCREEN_WIDTH-Constants::FIELD_WIDTH)/2, (Constants::GAME_SCREEN_HEIGHT-Constants::FIELD_WIDTH)/2, Constants::FIELD_WIDTH);
+    
     output->addSprite("Board", 351, 645, 144,63);
     output->addSprite("Board", 577, 645, 144,63);
     output->addSprite("VsLabel", 521, 686, 34);
@@ -183,6 +203,9 @@ void GameScene::renderImages(){
     output->addSprite("StadiumFloor", -55, 0, 265,720);
     output->addSprite("StadiumFloor", 862, 0,265, 720,180);
     field->render();
+    Point layerSize = output->getSpriteDimensions("BackgroundLayer");
+    output->addSprite("BackgroundLayer", (Constants::GAME_SCREEN_WIDTH-Constants::FIELD_WIDTH)/2, (Constants::GAME_SCREEN_HEIGHT-Constants::FIELD_WIDTH)/2-layerSize.y, layerSize.x);
+
     output->addSprite("UruguayFans", -55, 0, 265,720);
     output->addSprite("UruguayFans", 862, 0,265, 720,180);
     
@@ -196,11 +219,12 @@ void GameScene::renderImages(){
 }
 
 
-
 #pragma mark Destructor:
 GameScene::~GameScene(){
     delete homeButton;
     delete pauseButton;
+    delete playButton;
     delete gameTimer;
     delete field;
+    delete state;
 }

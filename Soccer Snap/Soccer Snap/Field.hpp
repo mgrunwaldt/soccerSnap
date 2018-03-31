@@ -21,6 +21,9 @@
 #include "FieldState.hpp"
 #include "FieldWaiting.hpp"
 #include "FieldAnimating.hpp"
+#include "FieldSwitchingGems.hpp"
+#include "FieldDestroyingGems.hpp"
+#include "FieldGemsGoingDown.hpp"
 
 /*
 enum FieldStates
@@ -46,35 +49,47 @@ public:
     void update();
     void render();
     
-    bool needsToStart();
-    void start();
+    void setReadyToStart();
+    bool isReadyToStart();
+    bool moveGems();
+    void skipLoader();
     
     
     static const int FIELD_X = 280;
     static const int FIELD_Y = 72;
     
-private:
-    Gem* gems[8][8];
-    Gem* firstGem;
-    Gem* secondGem;
-    Output *output;
+    void switchGems(Gem* firstGem, Gem* secondGem);
+    void setGemAtPos(Gem* gem, int x, int y);
+    
     Input* input;
+    Gem* getGemAtMousePosition(Point p);
+    Gem* getGem(int x, int y);
+    Gem* getRandomGem();
+    
+    bool makeSwitch();
+    void clearGemsToDelete();
+    void destroyGems();
+    vector<Gem*> gemsToDestroy;
+
+private:
+    Gem* gems[Constants::GEMS_PER_ROW][Constants::GEMS_PER_ROW];
+    void loadInitialMap();
+   // Gem* firstGem;
+   // Gem* secondGem;
+    Output *output;
+    
     string player;
     string opponent;
     
     FieldState* state;
-    bool selectedGemsAreAdjacent();
     bool canPlaceGem(int x, int y, Gem* gem);
-    Gem* getRandomGem();
-    Gem* getGemAtMousePosition(Point p);
     vector<vector<int>> toDeleteY;
-    vector<Gem*> gemsToDestroy;
-    bool makeSwitch();
-    void clearGemsToDelete();
     
-    void destroyGems();
     
-    bool gameNeedsToStart;
+    
+    
+    
+    bool readyToStart;
     
     
 };

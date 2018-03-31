@@ -25,13 +25,12 @@ Timer::Timer(Output* o, int seconds){
 
 void Timer::update(){
     float secondsElapsed = Constants::FRAME_DELAY/1000;
-    if(active){
-        timeLeft-=secondsElapsed;
-        secondsLeft = ceilf(timeLeft);
-        if(secondsLeft == 0){
-            active = false;
-        }
+    timeLeft-=secondsElapsed;
+    secondsLeft = ceilf(timeLeft);
+    if(secondsLeft == 0){
+        active = false;
     }
+    
     
 }
 
@@ -66,17 +65,7 @@ void Timer::render(){
 
 #pragma mark Actions:
 
-void Timer::start(){
-    active = true;
-}
 
-void Timer::stop(){
-    active = false;
-}
-
-bool Timer::isActive(){
-    return active;
-}
 
 bool Timer::hasTimeLeft(){
     return secondsLeft>0;

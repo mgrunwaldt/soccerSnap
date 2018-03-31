@@ -16,6 +16,7 @@ public:
     //agregar metodos que solo sirvan en este estado
     GameState* handleInput(EventType e, GameScene &g);
     GameState* update (GameScene &g);
+    void render(GameScene &g);
     
 private:
 };

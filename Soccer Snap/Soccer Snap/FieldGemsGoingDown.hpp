@@ -1,20 +1,18 @@
 //
-//  FieldAnimating.hpp
+//  FieldGemsGoingDown.hpp
 //  Soccer Snap
 //
-//  Created by Matias Grunwaldt on 3/30/18.
+//  Created by Matias Grunwaldt on 3/31/18.
 //  Copyright © 2018 grunwaldt. All rights reserved.
 //
 
 #include "FieldState.hpp"
-#ifndef FieldAnimating_hpp
-#define FieldAnimating_hpp
+#ifndef FieldGemsGoingDown_hpp
+#define FieldGemsGoingDown_hpp
 
-
-class FieldAnimating : public FieldState
+class FieldGemsGoingDown : public FieldState
 {
 public:
-    //agregar metodos que solo sirvan en este estado
     FieldState* handleInput(EventType e, Field &f);
     FieldState* update (Field &f);
     void render (Field &f);
@@ -22,6 +20,4 @@ public:
 private:
 };
 
-#endif /* FieldAnimating_hpp */
-
-
+#endif /* FieldGemsGoingDown_hpp */

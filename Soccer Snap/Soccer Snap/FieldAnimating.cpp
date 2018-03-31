@@ -16,23 +16,14 @@ FieldState* FieldAnimating::handleInput(EventType e, Field &f){
 
 
 FieldState* FieldAnimating::update(Field &f){
-    bool allOk = true;
-    for(int i=0;i<8;i++){
-        for(int j=0;j<8;j++){
-            Gem* toDraw = f.gems[i][j];
-            toDraw->update();
-            if(toDraw->isMoving())
-                allOk = false;
-        }
+    bool finishedAnimating = f.moveGems();
+    if(finishedAnimating){
+        f.setReadyToStart();
+        return new FieldWaiting();
     }
-    if(allOk){
-        state = FieldStates::WAITING;
-        gameNeedsToStart = true;
-    }
-
     return NULL;
 }
 
-/*
- 
- */
+void FieldAnimating::render(Field &f){
+    
+}

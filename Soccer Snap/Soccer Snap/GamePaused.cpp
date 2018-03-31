@@ -11,10 +11,20 @@
 #include "GamePaused.hpp"
 
 GameState* GamePaused::handleInput(EventType e, GameScene &g){
+    g.playButton->handleEvent(e);
+    if(g.playButton->isSelected()){
+        g.playButton->setSelected(false);
+
+        return new GamePlaying();
+    }
     return NULL;
 }
 
 
 GameState* GamePaused::update(GameScene &g){
     return NULL;
+}
+
+void GamePaused::render(GameScene &g){
+    g.showPlayButton();
 }

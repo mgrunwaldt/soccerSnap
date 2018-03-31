@@ -10,9 +10,10 @@
 #include "GameLoading.hpp"
 
 GameState* GameLoading::handleInput(EventType e, GameScene &g){
-    if(e == EventType::MouseDown || e == EventType::MouseUp){
+    /*if(e == EventType::MouseDown || e == EventType::MouseUp){
+        g.skipLoader();
         return new GamePlaying();
-    }
+    }*/
     return NULL;
 }
 
@@ -22,4 +23,8 @@ GameState* GameLoading::update(GameScene &g){
         return new GamePlaying();
     }
     return NULL;
+}
+
+void GameLoading::render(GameScene &g){
+
 }

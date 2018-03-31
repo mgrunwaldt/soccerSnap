@@ -20,6 +20,9 @@
 		449FA6BE206EF23D002D37C3 /* GamePaused.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 449FA6BC206EF23D002D37C3 /* GamePaused.cpp */; };
 		449FA6C1206EF24E002D37C3 /* GameFinished.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 449FA6BF206EF24E002D37C3 /* GameFinished.cpp */; };
 		449FA6C4206EFD00002D37C3 /* FieldAnimating.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 449FA6C2206EFD00002D37C3 /* FieldAnimating.cpp */; };
+		449FA6C7206F3D96002D37C3 /* FieldSwitchingGems.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 449FA6C5206F3D96002D37C3 /* FieldSwitchingGems.cpp */; };
+		449FA6CA206F5360002D37C3 /* FieldDestroyingGems.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 449FA6C8206F5360002D37C3 /* FieldDestroyingGems.cpp */; };
+		449FA6CD206F587B002D37C3 /* FieldGemsGoingDown.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 449FA6CB206F587B002D37C3 /* FieldGemsGoingDown.cpp */; };
 		44BED94B2062D64F00D9585F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44BED94A2062D64F00D9585F /* main.cpp */; };
 		44BED9542062D72C00D9585F /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44BED9522062D72C00D9585F /* SDL2_image.framework */; };
 		44BED9552062D72C00D9585F /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44BED9532062D72C00D9585F /* SDL2.framework */; };
@@ -145,6 +148,13 @@
 		449FA6C0206EF24E002D37C3 /* GameFinished.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameFinished.hpp; sourceTree = "<group>"; };
 		449FA6C2206EFD00002D37C3 /* FieldAnimating.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FieldAnimating.cpp; sourceTree = "<group>"; };
 		449FA6C3206EFD00002D37C3 /* FieldAnimating.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FieldAnimating.hpp; sourceTree = "<group>"; };
+		449FA6C5206F3D96002D37C3 /* FieldSwitchingGems.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FieldSwitchingGems.cpp; sourceTree = "<group>"; };
+		449FA6C6206F3D96002D37C3 /* FieldSwitchingGems.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FieldSwitchingGems.hpp; sourceTree = "<group>"; };
+		449FA6C8206F5360002D37C3 /* FieldDestroyingGems.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FieldDestroyingGems.cpp; sourceTree = "<group>"; };
+		449FA6C9206F5360002D37C3 /* FieldDestroyingGems.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FieldDestroyingGems.hpp; sourceTree = "<group>"; };
+		449FA6CB206F587B002D37C3 /* FieldGemsGoingDown.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FieldGemsGoingDown.cpp; sourceTree = "<group>"; };
+		449FA6CC206F587B002D37C3 /* FieldGemsGoingDown.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FieldGemsGoingDown.hpp; sourceTree = "<group>"; };
+		449FA6CE206F610D002D37C3 /* BackgroundLayer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BackgroundLayer.png; path = assets/BackgroundLayer.png; sourceTree = "<group>"; };
 		44BED9472062D64F00D9585F /* Soccer Snap */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Soccer Snap"; sourceTree = BUILT_PRODUCTS_DIR; };
 		44BED94A2062D64F00D9585F /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		44BED9522062D72C00D9585F /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
@@ -299,6 +309,12 @@
 				449FA6B7206EED8E002D37C3 /* FieldWaiting.hpp */,
 				449FA6C2206EFD00002D37C3 /* FieldAnimating.cpp */,
 				449FA6C3206EFD00002D37C3 /* FieldAnimating.hpp */,
+				449FA6C5206F3D96002D37C3 /* FieldSwitchingGems.cpp */,
+				449FA6C6206F3D96002D37C3 /* FieldSwitchingGems.hpp */,
+				449FA6C8206F5360002D37C3 /* FieldDestroyingGems.cpp */,
+				449FA6C9206F5360002D37C3 /* FieldDestroyingGems.hpp */,
+				449FA6CB206F587B002D37C3 /* FieldGemsGoingDown.cpp */,
+				449FA6CC206F587B002D37C3 /* FieldGemsGoingDown.hpp */,
 			);
 			name = States;
 			sourceTree = "<group>";
@@ -346,6 +362,7 @@
 		44BED9562062D75100D9585F /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				449FA6CE206F610D002D37C3 /* BackgroundLayer.png */,
 				449FA6912069B6D2002D37C3 /* Gems */,
 				445EDB3820694D4E00D062E1 /* Buttons */,
 				445EDB2220694D2400D062E1 /* Numbers */,
@@ -469,8 +486,11 @@
 				449FA6B8206EED8E002D37C3 /* FieldWaiting.cpp in Sources */,
 				4496FD882063E99C003F8C67 /* Field.cpp in Sources */,
 				445EDAF6206768C400D062E1 /* MainMenu.cpp in Sources */,
+				449FA6CD206F587B002D37C3 /* FieldGemsGoingDown.cpp in Sources */,
+				449FA6CA206F5360002D37C3 /* FieldDestroyingGems.cpp in Sources */,
 				449FA6C4206EFD00002D37C3 /* FieldAnimating.cpp in Sources */,
 				445EDB2120693A6600D062E1 /* Timer.cpp in Sources */,
+				449FA6C7206F3D96002D37C3 /* FieldSwitchingGems.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

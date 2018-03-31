@@ -45,21 +45,33 @@ public:
     void addOpponentPoints(int pointsToAdd);
     
     void updateField();
+    void handleFieldEvent(EventType e);
     bool fieldLoaded();
+    void updateTimer();
+    void skipLoader();
+    
+    void showPlayButton();
+    void showPauseButton();
+    
+    bool hasFinished();
+    bool hasWon();
+    void hideEndAnimation();
+    
+    Button* pauseButton;
+    Button* playButton;
     
 private:
     Output *output;
     Input * input;
-    int duration;
     int points;
     int opponentPoints;
     bool active;
+    
     string countries[5]= {"Uruguay","Portugal","England","Brazil","Russia"};
     string selectedCountry;
     string opponentCountry;
     
     Button* homeButton;
-    Button* pauseButton;
     
     Timer* gameTimer;
     Field* field;
@@ -69,9 +81,7 @@ private:
     void loadField();
     void renderImages();
     void renderPoints();
-    
-    void goToMainMenu();
-    
+        
     GameState* state;
     
 };

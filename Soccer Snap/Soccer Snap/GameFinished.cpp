@@ -16,5 +16,16 @@ GameState* GameFinished::handleInput(EventType e, GameScene &g){
 
 
 GameState* GameFinished::update(GameScene &g){
+    if(g.hasWon()){
+        
+    }
+    else{
+        
+    }
+    g.hideEndAnimation();
     return NULL;
+}
+
+void GameFinished::render(GameScene &g){
+    
 }

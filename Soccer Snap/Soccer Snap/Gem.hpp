@@ -35,6 +35,7 @@ public:
     void setSelected(bool isSelected);
     bool isSelected();
     bool isMoving();
+    void setMoving(bool move);
     
     bool hasMouseInside (Point mousePosition);
     

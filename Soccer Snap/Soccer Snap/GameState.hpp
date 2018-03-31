@@ -16,6 +16,7 @@ class GameState
 public:
     virtual ~GameState() {}
     virtual GameState* handleInput(EventType e, GameScene &g) = 0;
+    virtual void render(GameScene &g) = 0;
     virtual GameState* update(GameScene &g) =0;
 };
 #endif /* GameState_hpp */

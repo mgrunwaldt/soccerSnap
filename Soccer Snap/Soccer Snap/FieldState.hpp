@@ -17,6 +17,7 @@ public:
     virtual ~FieldState() {}
     virtual FieldState* handleInput(EventType e, Field &f) = 0;
     virtual FieldState* update(Field &f) =0;
+    virtual void render (Field &f) = 0;
 };
 #endif /* FieldState_hpp */
 

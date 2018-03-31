@@ -23,11 +23,7 @@ public:
     void render();
     void update();
     
-    void start();
-    void stop();
-    
     bool hasTimeLeft();
-    bool isActive();
     
     void addTime(int seconds);
     
