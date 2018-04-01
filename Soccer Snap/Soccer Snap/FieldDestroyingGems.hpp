@@ -18,6 +18,8 @@ public:
     FieldState* update (Field &f);
     void setGemsToDestroy (vector<Gem*> gems);
     void render (Field &f);
+    void addPoints(Field &f);
+
 private:
     vector<Gem*> gemsToDestroy;
 

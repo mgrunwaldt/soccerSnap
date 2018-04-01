@@ -43,10 +43,29 @@ void WindowManager::showMainMenu(){
     mainMenuScene->load();
     activeScene = mainMenuScene;
     presentScene();
-    int chosenCountry = mainMenuScene->getChosenCountry();
-    delete mainMenuScene;
+    if(mainMenuScene->toGame()){
+        int chosenCountry = mainMenuScene->getChosenCountry();
+        delete mainMenuScene;
+        if(gameRunning){
+            showGameScreen(chosenCountry);
+        }
+    }
+    else{
+        delete mainMenuScene;
+        if(gameRunning){
+            showRulesScreen();
+        }
+    }
+}
+
+void WindowManager::showRulesScreen(){
+    rulesScene = new Rules(output, input);
+    rulesScene->load();
+    activeScene = rulesScene;
+    presentScene();
+    delete rulesScene;
     if(gameRunning){
-        showGameScreen(chosenCountry);
+        this->showMainMenu();
     }
 }
 
@@ -85,6 +104,7 @@ void WindowManager::presentScene(){
             Tools::delay(Constants::FRAME_DELAY-frameTime);
         }
     }
+    
     if(!gameRunning){
         delete this;
     }

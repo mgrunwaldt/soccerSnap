@@ -37,11 +37,11 @@ enum FieldStates
     DESTROYING,
     GEMS_GOING_DOWN,
 };*/
-
+class GameScene;
 class Field{
 public:
     
-    Field(Output* o, Input* i);
+    Field(Output* o, Input* i, GameScene* parent);
     ~Field();
     
     void load(string myCountry, string opponentCountry);
@@ -70,7 +70,16 @@ public:
     void clearGemsToDelete();
     void destroyGems();
     vector<Gem*> gemsToDestroy;
-
+    
+    vector<Gem*> gemsBy3;
+    vector<Gem*> gemsBy4;
+    vector<Gem*> gemsBy5;
+    vector<Gem*> gemsByT;
+    
+    void addTime (int seconds);
+    void addOpponentPoints (int points);
+    void addPoints (int points);
+    
 private:
     Gem* gems[Constants::GEMS_PER_ROW][Constants::GEMS_PER_ROW];
     void loadInitialMap();
@@ -86,10 +95,14 @@ private:
     vector<vector<int>> toDeleteY;
     
     
-    
-    
+    void addToCorrispondingPattern (Gem* gem, int sequenceSize);
+    void createTPattern(int xToAdd, int y, int equalsInARow);
+    void removeFromCorrispondingPattern (Gem* gem);
+
     
     bool readyToStart;
+    
+    GameScene *game;
     
     
 };

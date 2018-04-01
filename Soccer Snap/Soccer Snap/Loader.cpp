@@ -9,7 +9,7 @@
 #include "Loader.hpp"
 
 
-#pragma mark Inicialization:
+#pragma mark Initialization:
 
 Loader::Loader(Output* o, Input* i){
     output = o;

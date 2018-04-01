@@ -7,12 +7,14 @@
 //
 
 #include "Field.hpp"
+#include "GameScene.hpp"
 
 #pragma mark Inicialization
 
-Field::Field(Output* o, Input* i){
+Field::Field(Output* o, Input* i, GameScene* parent){
     output = o;
     input = i;
+    game = parent;
 }
 void Field::load(string myCountry, string opponentCountry){
     player = myCountry;
@@ -92,6 +94,15 @@ void Field::skipLoader(){
     }
 }
 
+void Field::addTime (int seconds){
+    game->addTime(seconds);
+}
+void Field::addOpponentPoints (int points){
+    game->addOpponentPoints(points);
+}
+void Field::addPoints (int points){
+    game->addPoints(points);
+}
 
 #pragma mark Game Logic:
 
@@ -125,6 +136,7 @@ Gem* Field::getRandomGem(){
             break;
         case 2:
             newGem = new Gem(opponent);
+            newGem->setOpponent();
             break;
         case 3:
             newGem = new Gem("Goalkeeper");
@@ -172,6 +184,79 @@ bool Field::canPlaceGem(int x, int y, Gem* gem)
 
 
 #pragma mark Gem Destruction:
+void Field::addToCorrispondingPattern (Gem* gem, int sequenceSize){
+    if(sequenceSize == 3){
+        gemsBy3.push_back(gem);
+    }
+    else if(sequenceSize == 4){
+        gemsBy4.push_back(gem);
+    }
+    else{
+        gemsBy5.push_back(gem);
+    }
+}
+
+void Field::createTPattern(int xToAdd, int y, int equalsInARow){
+    bool leftDone = false;
+    int previousX = xToAdd-1;
+    while (previousX>=0 && !leftDone) {
+        if(getGem(previousX, y)->getType() == getGem(xToAdd, y)->getType()){
+            removeFromCorrispondingPattern(getGem(previousX, y));
+            gemsByT.push_back(getGem(previousX, y));
+        }
+        else leftDone = true;
+        previousX--;
+    }
+    int nextX = xToAdd + 1;
+    int rightDone = false;
+    while (nextX<Constants::GEMS_PER_ROW && !rightDone) {
+        if(getGem(nextX, y)->getType() == getGem(xToAdd, y)->getType()){
+            vector<int> columnToDelete = toDeleteY[nextX];
+            gemsByT.push_back(getGem(nextX, y));
+            columnToDelete.push_back(y);
+            toDeleteY[nextX] = columnToDelete;
+        }
+        else rightDone = true;
+        nextX++;
+    }
+    bool topDone = false;
+    bool bottomDone = false;
+    int previousY = y-1;
+    int nextY = y+1;
+    while (previousY>=0 && !topDone) {
+        if(getGem(xToAdd, previousY)->getType() == getGem(xToAdd, y)->getType()){
+            removeFromCorrispondingPattern(getGem(xToAdd, previousY));
+            gemsByT.push_back(getGem(xToAdd, previousY));
+        }
+        else topDone = true;
+        previousY--;
+    }
+    while (nextY<Constants::GEMS_PER_ROW && !bottomDone) {
+        if(getGem(xToAdd, nextY)->getType() == getGem(xToAdd, y)->getType()){
+            removeFromCorrispondingPattern(getGem(xToAdd, nextY));
+            gemsByT.push_back(getGem(xToAdd, nextY));
+        }
+        else bottomDone = true;
+        nextY++;
+    }
+    removeFromCorrispondingPattern(getGem(xToAdd, y));
+    gemsByT.push_back(getGem(xToAdd, y));//en el y lo agregue a equals in a row con 4, ahora con x equals in a row es 3, no lo va a sacar
+}
+
+void Field::removeFromCorrispondingPattern (Gem* gem){
+    if (find(gemsBy3.begin(), gemsBy3.end(),gem)!=gemsBy3.end()){
+        int posToDelete = find(gemsBy3.begin(),gemsBy3.end(),gem)-gemsBy3.begin();
+        gemsBy3.erase(gemsBy3.begin()+ posToDelete);
+    }
+    else if (find(gemsBy4.begin(), gemsBy4.end(),gem)!=gemsBy4.end()){
+        int posToDelete = find(gemsBy4.begin(),gemsBy4.end(),gem)-gemsBy4.begin();
+        gemsBy4.erase(gemsBy4.begin()+ posToDelete);
+    }
+    else if (find(gemsBy5.begin(), gemsBy5.end(),gem)!=gemsBy5.end()){
+        int posToDelete = find(gemsBy5.begin(),gemsBy5.end(),gem)-gemsBy5.begin();
+        gemsBy5.erase(gemsBy5.begin()+ posToDelete);
+    }
+}
 
 bool Field::makeSwitch(){
     clearGemsToDelete();
@@ -198,12 +283,12 @@ bool Field::makeSwitch(){
                 for (int yToAdd = currentY; yToAdd<currentY+equalsInARow;yToAdd++){
                     getGem(x, yToAdd)->setDeleted();
                     columnToDelete.push_back(yToAdd);
+                    addToCorrispondingPattern(getGem(x, yToAdd), equalsInARow);
                 }
             }
             currentY += equalsInARow;
         }
         toDeleteY.push_back(columnToDelete);
-        //clear columnToDelete?
     }
     for(int y = 0;y<Constants::GEMS_PER_ROW;y++){
         int currentX = 0;
@@ -221,7 +306,7 @@ bool Field::makeSwitch(){
                 }
                 else nextIsEqual = false;
             }
-            if(equalsInARow >=3){//FALTA NO AGREGAR DUPLICADOS!!!
+            if(equalsInARow >=3){
                 switchMade = true;
                 for (int xToAdd = currentX; xToAdd<currentX+equalsInARow;xToAdd++){
                     vector<int> columnToDelete = toDeleteY[xToAdd];
@@ -229,25 +314,34 @@ bool Field::makeSwitch(){
                     if (find(columnToDelete.begin(), columnToDelete.end(),y)==columnToDelete.end()){
                         columnToDelete.push_back(y);
                         toDeleteY[xToAdd] = columnToDelete;
+                        addToCorrispondingPattern(getGem(xToAdd, y), equalsInARow);
+                    }
+                    else{
+                        createTPattern(xToAdd, y, equalsInARow);
+                        break;
                     }
                 }
             }
-            //Hay que agregar a toDelete?
             currentX += equalsInARow;
         }
     }
     return switchMade;
 }
 
+
 void Field::clearGemsToDelete(){
     for(int i=0;i<toDeleteY.size();i++){
         toDeleteY[i].clear();
     }
     toDeleteY.clear();
+    gemsBy3.clear();
+    gemsBy4.clear();
+    gemsBy5.clear();
+    gemsByT.clear();
 }
 
 void Field::destroyGems(){
-    
+    gemsToDestroy.clear();
     for(int x = 0;x<Constants::GEMS_PER_ROW;x++){
         vector<int> columnToDelete = toDeleteY[x];
         if(columnToDelete.size() > 0){

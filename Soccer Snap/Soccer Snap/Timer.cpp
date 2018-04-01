@@ -45,11 +45,15 @@ void Timer::render(){
     
     string name = "Timer";
     
+    if(secondsLeft<=10){
+        name += "Red";
+    }
+    
     string minuteName = name+to_string(minute);
     string tenthMinuteName = name+to_string(tenthMinute);
     string secondName = name+to_string(second);
     string tenthSecondName = name+to_string(tenthSecond);
-    
+    string timerSeparatorName = name+"Separator";
     int timerX = (Constants::GAME_SCREEN_WIDTH-boardSize.x)/2;
     int timerY = Constants::GAME_SCREEN_HEIGHT*0.02;
     
@@ -58,7 +62,7 @@ void Timer::render(){
     
     outputFacade->addSprite(tenthMinuteName,4+timerX, timerY+4, numberSize.x);
     outputFacade->addSprite(minuteName, 4+timerX+numberSize.x, timerY+4, numberSize.x);
-    outputFacade->addSprite("TimerSeparator", 4+timerX+2*numberSize.x, timerY+4, separatorSize.x);
+    outputFacade->addSprite(timerSeparatorName, 4+timerX+2*numberSize.x, timerY+4, separatorSize.x);
     outputFacade->addSprite(tenthSecondName, 4+timerX+2*numberSize.x+separatorSize.x, timerY+4, numberSize.x);
     outputFacade->addSprite(secondName, 4+timerX+3*numberSize.x+separatorSize.x, timerY+4, numberSize.x);
 }
@@ -72,7 +76,7 @@ bool Timer::hasTimeLeft(){
 }
 
 void Timer::addTime(int seconds){
-    secondsLeft+=seconds;
+    timeLeft+=seconds;
 }
 
 int Timer::getMinutesFromSecondsLeft(){

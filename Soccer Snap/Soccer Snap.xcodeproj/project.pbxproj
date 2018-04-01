@@ -23,6 +23,7 @@
 		449FA6C7206F3D96002D37C3 /* FieldSwitchingGems.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 449FA6C5206F3D96002D37C3 /* FieldSwitchingGems.cpp */; };
 		449FA6CA206F5360002D37C3 /* FieldDestroyingGems.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 449FA6C8206F5360002D37C3 /* FieldDestroyingGems.cpp */; };
 		449FA6CD206F587B002D37C3 /* FieldGemsGoingDown.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 449FA6CB206F587B002D37C3 /* FieldGemsGoingDown.cpp */; };
+		449FA6DF2070BC1C002D37C3 /* Rules.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 449FA6DD2070BC1C002D37C3 /* Rules.cpp */; };
 		44BED94B2062D64F00D9585F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44BED94A2062D64F00D9585F /* main.cpp */; };
 		44BED9542062D72C00D9585F /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44BED9522062D72C00D9585F /* SDL2_image.framework */; };
 		44BED9552062D72C00D9585F /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44BED9532062D72C00D9585F /* SDL2.framework */; };
@@ -155,6 +156,38 @@
 		449FA6CB206F587B002D37C3 /* FieldGemsGoingDown.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FieldGemsGoingDown.cpp; sourceTree = "<group>"; };
 		449FA6CC206F587B002D37C3 /* FieldGemsGoingDown.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FieldGemsGoingDown.hpp; sourceTree = "<group>"; };
 		449FA6CE206F610D002D37C3 /* BackgroundLayer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BackgroundLayer.png; path = assets/BackgroundLayer.png; sourceTree = "<group>"; };
+		449FA6CF207086B7002D37C3 /* BrazilFans.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BrazilFans.png; path = assets/BrazilFans.png; sourceTree = "<group>"; };
+		449FA6D22070AA5E002D37C3 /* EndHomeDown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EndHomeDown.png; path = assets/EndHomeDown.png; sourceTree = "<group>"; };
+		449FA6D32070AA5E002D37C3 /* EndHomeOut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EndHomeOut.png; path = assets/EndHomeOut.png; sourceTree = "<group>"; };
+		449FA6D42070AA5E002D37C3 /* EndHomeOver.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EndHomeOver.png; path = assets/EndHomeOver.png; sourceTree = "<group>"; };
+		449FA6D62070AA5E002D37C3 /* EndLoseText.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EndLoseText.png; path = assets/EndLoseText.png; sourceTree = "<group>"; };
+		449FA6D72070AA5E002D37C3 /* EndPlayAgainDown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EndPlayAgainDown.png; path = assets/EndPlayAgainDown.png; sourceTree = "<group>"; };
+		449FA6D82070AA5E002D37C3 /* EndPlayAgainOut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EndPlayAgainOut.png; path = assets/EndPlayAgainOut.png; sourceTree = "<group>"; };
+		449FA6D92070AA5E002D37C3 /* EndPlayAgainOver.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EndPlayAgainOver.png; path = assets/EndPlayAgainOver.png; sourceTree = "<group>"; };
+		449FA6DB2070AA5E002D37C3 /* EndWinText.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EndWinText.png; path = assets/EndWinText.png; sourceTree = "<group>"; };
+		449FA6DC2070BBF6002D37C3 /* Rules.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Rules.png; path = assets/Rules.png; sourceTree = "<group>"; };
+		449FA6DD2070BC1C002D37C3 /* Rules.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Rules.cpp; sourceTree = "<group>"; };
+		449FA6DE2070BC1C002D37C3 /* Rules.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Rules.hpp; sourceTree = "<group>"; };
+		449FA6E02070C14F002D37C3 /* HelpDown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HelpDown.png; path = assets/HelpDown.png; sourceTree = "<group>"; };
+		449FA6E12070C14F002D37C3 /* HelpOut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HelpOut.png; path = assets/HelpOut.png; sourceTree = "<group>"; };
+		449FA6E22070C14F002D37C3 /* HelpOver.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HelpOver.png; path = assets/HelpOver.png; sourceTree = "<group>"; };
+		449FA6E32070CADC002D37C3 /* EndBoard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EndBoard.png; path = assets/EndBoard.png; sourceTree = "<group>"; };
+		449FA6E42070CD1B002D37C3 /* EndLoseMedal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EndLoseMedal.png; path = assets/EndLoseMedal.png; sourceTree = "<group>"; };
+		449FA6E52070CD1B002D37C3 /* EndWinCup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EndWinCup.png; path = assets/EndWinCup.png; sourceTree = "<group>"; };
+		449FA6E62070D7F5002D37C3 /* EnglandFans.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EnglandFans.png; path = assets/EnglandFans.png; sourceTree = "<group>"; };
+		449FA6E72070D7F5002D37C3 /* PortugalFans.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PortugalFans.png; path = assets/PortugalFans.png; sourceTree = "<group>"; };
+		449FA6E82070D7F5002D37C3 /* RussiaFans.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RussiaFans.png; path = assets/RussiaFans.png; sourceTree = "<group>"; };
+		449FA6E92071747F002D37C3 /* TimerRed0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TimerRed0.png; path = assets/TimerRed0.png; sourceTree = "<group>"; };
+		449FA6EA2071747F002D37C3 /* TimerRed1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TimerRed1.png; path = assets/TimerRed1.png; sourceTree = "<group>"; };
+		449FA6EB2071747F002D37C3 /* TimerRed2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TimerRed2.png; path = assets/TimerRed2.png; sourceTree = "<group>"; };
+		449FA6EC2071747F002D37C3 /* TimerRed3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TimerRed3.png; path = assets/TimerRed3.png; sourceTree = "<group>"; };
+		449FA6ED2071747F002D37C3 /* TimerRed4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TimerRed4.png; path = assets/TimerRed4.png; sourceTree = "<group>"; };
+		449FA6EE2071747F002D37C3 /* TimerRed5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TimerRed5.png; path = assets/TimerRed5.png; sourceTree = "<group>"; };
+		449FA6EF2071747F002D37C3 /* TimerRed6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TimerRed6.png; path = assets/TimerRed6.png; sourceTree = "<group>"; };
+		449FA6F02071747F002D37C3 /* TimerRed7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TimerRed7.png; path = assets/TimerRed7.png; sourceTree = "<group>"; };
+		449FA6F12071747F002D37C3 /* TimerRed8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TimerRed8.png; path = assets/TimerRed8.png; sourceTree = "<group>"; };
+		449FA6F22071747F002D37C3 /* TimerRed9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TimerRed9.png; path = assets/TimerRed9.png; sourceTree = "<group>"; };
+		449FA6F32071747F002D37C3 /* TimerRedSeparator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TimerRedSeparator.png; path = assets/TimerRedSeparator.png; sourceTree = "<group>"; };
 		44BED9472062D64F00D9585F /* Soccer Snap */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Soccer Snap"; sourceTree = BUILT_PRODUCTS_DIR; };
 		44BED94A2062D64F00D9585F /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		44BED9522062D72C00D9585F /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
@@ -195,6 +228,8 @@
 				445EDB0120682B9700D062E1 /* Scene.hpp */,
 				445EDB172068B94200D062E1 /* GameScene.cpp */,
 				445EDB182068B94200D062E1 /* GameScene.hpp */,
+				449FA6DD2070BC1C002D37C3 /* Rules.cpp */,
+				449FA6DE2070BC1C002D37C3 /* Rules.hpp */,
 			);
 			name = Windows;
 			sourceTree = "<group>";
@@ -202,6 +237,10 @@
 		445EDB0C2068AF9F00D062E1 /* Countries */ = {
 			isa = PBXGroup;
 			children = (
+				449FA6E62070D7F5002D37C3 /* EnglandFans.png */,
+				449FA6E72070D7F5002D37C3 /* PortugalFans.png */,
+				449FA6E82070D7F5002D37C3 /* RussiaFans.png */,
+				449FA6CF207086B7002D37C3 /* BrazilFans.png */,
 				449FA69B206B3C01002D37C3 /* BrazilSelected.png */,
 				449FA69C206B3C01002D37C3 /* EnglandSelected.png */,
 				449FA69E206B3C01002D37C3 /* PortugalSelected.png */,
@@ -229,6 +268,17 @@
 		445EDB2220694D2400D062E1 /* Numbers */ = {
 			isa = PBXGroup;
 			children = (
+				449FA6E92071747F002D37C3 /* TimerRed0.png */,
+				449FA6EA2071747F002D37C3 /* TimerRed1.png */,
+				449FA6EB2071747F002D37C3 /* TimerRed2.png */,
+				449FA6EC2071747F002D37C3 /* TimerRed3.png */,
+				449FA6ED2071747F002D37C3 /* TimerRed4.png */,
+				449FA6EE2071747F002D37C3 /* TimerRed5.png */,
+				449FA6EF2071747F002D37C3 /* TimerRed6.png */,
+				449FA6F02071747F002D37C3 /* TimerRed7.png */,
+				449FA6F12071747F002D37C3 /* TimerRed8.png */,
+				449FA6F22071747F002D37C3 /* TimerRed9.png */,
+				449FA6F32071747F002D37C3 /* TimerRedSeparator.png */,
 				445EDB2320694D3900D062E1 /* Score1.png */,
 				445EDB2420694D3900D062E1 /* Score2.png */,
 				445EDB2520694D3900D062E1 /* Score3.png */,
@@ -257,6 +307,9 @@
 		445EDB3820694D4E00D062E1 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				449FA6E02070C14F002D37C3 /* HelpDown.png */,
+				449FA6E12070C14F002D37C3 /* HelpOut.png */,
+				449FA6E22070C14F002D37C3 /* HelpOver.png */,
 				445EDB3920694D6300D062E1 /* MenuButtonIn.png */,
 				445EDB3A20694D6300D062E1 /* MenuButtonOut.png */,
 				445EDB3B20694D6300D062E1 /* MenuButtonOver.png */,
@@ -319,6 +372,24 @@
 			name = States;
 			sourceTree = "<group>";
 		};
+		449FA6D02070AA4F002D37C3 /* End */ = {
+			isa = PBXGroup;
+			children = (
+				449FA6E42070CD1B002D37C3 /* EndLoseMedal.png */,
+				449FA6E52070CD1B002D37C3 /* EndWinCup.png */,
+				449FA6E32070CADC002D37C3 /* EndBoard.png */,
+				449FA6D22070AA5E002D37C3 /* EndHomeDown.png */,
+				449FA6D32070AA5E002D37C3 /* EndHomeOut.png */,
+				449FA6D42070AA5E002D37C3 /* EndHomeOver.png */,
+				449FA6D62070AA5E002D37C3 /* EndLoseText.png */,
+				449FA6D72070AA5E002D37C3 /* EndPlayAgainDown.png */,
+				449FA6D82070AA5E002D37C3 /* EndPlayAgainOut.png */,
+				449FA6D92070AA5E002D37C3 /* EndPlayAgainOver.png */,
+				449FA6DB2070AA5E002D37C3 /* EndWinText.png */,
+			);
+			name = End;
+			sourceTree = "<group>";
+		};
 		44BED93E2062D64F00D9585F = {
 			isa = PBXGroup;
 			children = (
@@ -362,6 +433,8 @@
 		44BED9562062D75100D9585F /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				449FA6DC2070BBF6002D37C3 /* Rules.png */,
+				449FA6D02070AA4F002D37C3 /* End */,
 				449FA6CE206F610D002D37C3 /* BackgroundLayer.png */,
 				449FA6912069B6D2002D37C3 /* Gems */,
 				445EDB3820694D4E00D062E1 /* Buttons */,
@@ -487,6 +560,7 @@
 				4496FD882063E99C003F8C67 /* Field.cpp in Sources */,
 				445EDAF6206768C400D062E1 /* MainMenu.cpp in Sources */,
 				449FA6CD206F587B002D37C3 /* FieldGemsGoingDown.cpp in Sources */,
+				449FA6DF2070BC1C002D37C3 /* Rules.cpp in Sources */,
 				449FA6CA206F5360002D37C3 /* FieldDestroyingGems.cpp in Sources */,
 				449FA6C4206EFD00002D37C3 /* FieldAnimating.cpp in Sources */,
 				445EDB2120693A6600D062E1 /* Timer.cpp in Sources */,

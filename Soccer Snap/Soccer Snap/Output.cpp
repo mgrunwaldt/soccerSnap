@@ -97,13 +97,14 @@ SDL_Texture* Output::getTexture(string name){
 void Output::addSprite(string name,int x, int y, int width, int height, int angle, int alpha){
     SDL_Texture * texture = getTexture(name);
     SDL_Rect destRect;
-   
+    float res;
+    
     setRes();
     
     destRect.x = x*winRes;
     destRect.y = y*winRes;
     
-    destRect.w = width*winRes;
+    destRect.w = width*winRes; // en hd width es 175 y en sd es 350
     
     if(height == 0){
         int originalWidth = 0;
@@ -126,8 +127,8 @@ Point Output::getSpriteDimensions(string name){
     int originalHeight = 0;
     SDL_QueryTexture(texture, NULL, NULL, &originalWidth, &originalHeight);
     Point toReturn;
-    toReturn.x = originalWidth/winRes;
-    toReturn.y = originalHeight/winRes;
+    toReturn.x = originalWidth/2;
+    toReturn.y = originalHeight/2;
     return toReturn;
 }
 

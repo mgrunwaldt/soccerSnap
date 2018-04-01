@@ -17,22 +17,30 @@ MainMenu::MainMenu(Output* o, Input* i){
     output = o;
     input = i;
     active = true;
+    goToGame = false;
+    goToRules = false;
 }
 
 void MainMenu::load(){
-    loadPlayButton();
-    loadCountries();
     loadPositions();
+    loadButtons();
+    loadCountries();
 }
 
 #pragma mark GUI Load:
 
-void MainMenu::loadPlayButton(){
-    string buttonSprites[3]={"PlayOut","PlayOver","PlayDown"};
-    playButton = new Button(output,input,buttonSprites);
+void MainMenu::loadButtons(){
+    string playButtonSprites[3]={"PlayOut","PlayOver","PlayDown"};
+    playButton = new Button(output,input,playButtonSprites);
     Point playButtonSize = output->getSpriteDimensions("PlayOut");
     int playX = (Constants::GAME_SCREEN_WIDTH-playButtonSize.x)/2;
     playButton->setPosition(playX, Constants::GAME_SCREEN_HEIGHT*0.83);
+    
+    string helpButtonSprites[3]={"HelpOut","HelpOver","HelpDown"};
+    rulesButton = new Button(output,input,helpButtonSprites);
+    Point rulesButtonSize = output->getSpriteDimensions("HelpOut");
+    int rulesX = (Constants::GAME_SCREEN_WIDTH - separatorDimensions.x)/2-rulesButtonSize.x + separatorDimensions.x;
+    rulesButton->setPosition(rulesX, logoY);
 }
 
 void MainMenu::loadCountries(){
@@ -77,7 +85,13 @@ void MainMenu::loadPositions(){
 
 void MainMenu::handleEvent(EventType e){
     playButton->handleEvent(e);
+    rulesButton->handleEvent(e);
     if(playButton->isSelected()){
+        goToGame = true;
+        active = false;
+    }
+    else if(rulesButton->isSelected()){
+        goToRules = true;
         active = false;
     }
     for(int i = 0;i<5;i++){
@@ -99,11 +113,19 @@ void MainMenu::update(){
 }
 
 void MainMenu::render(){
+    rulesButton->render();
     playButton->render();
     renderCountryButtons();
     renderStaticImages();
 }
 
+bool MainMenu::toRules(){
+    return goToRules;
+}
+
+bool MainMenu::toGame(){
+    return goToGame;
+}
 #pragma mark Renders:
 
 void MainMenu::renderStaticImages(){
@@ -153,6 +175,7 @@ int MainMenu::getChosenCountry(){
 
 MainMenu::~MainMenu(){
     delete playButton;
+    delete rulesButton;
     for(int i = 0;i<5;i++){
         delete countryButtons[i];
     }

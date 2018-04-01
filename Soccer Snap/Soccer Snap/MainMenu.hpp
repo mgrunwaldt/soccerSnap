@@ -30,6 +30,9 @@ public:
     bool isActive();
     int getChosenCountry();
     
+    bool toGame();
+    bool toRules();
+    
     
 private:
     Output * output;
@@ -42,13 +45,17 @@ private:
     Point ballDimensions, logoDimensions, pickTeamDimensions, separatorDimensions;
     
     Button* playButton;
+    Button* rulesButton;
     Button* countryButtons[5];
     
-    void loadPlayButton();
+    void loadButtons();
     void loadCountries();
     void loadPositions();
     void renderCountryButtons();
     void renderStaticImages();
+    
+    bool goToGame;
+    bool goToRules;
     
 };
 #endif /* MainMenu_hpp */

@@ -11,11 +11,17 @@ int fieldX;
 int fieldY;
 int fieldWidth;
 
+const int PLAYER_VALUES [3] = {15,20,25};
+const int OPPONENT_VALUES [3] = {5,15,30};
+const int GOALKEEPER_VALUES [3] = {10,10,15};
+const int BALL_VALUES [3] = {15,20,30};
+const int REFEREE_TIME_VALUES [3] = {2,2,4};
 
 #pragma mark Initialization:
 
 Gem::Gem(string name){
     spriteName = name;
+    opponent = false;
 }
 
 void Gem::load(Output*output){
@@ -31,6 +37,9 @@ void Gem::load(Output*output){
     fieldY = (Constants::GAME_SCREEN_HEIGHT-Constants::FIELD_WIDTH)/2;
 }
 
+void Gem::setOpponent(){
+    opponent = true;
+}
 #pragma mark Direction and Position:
 
 void Gem::setPos(int gridX, int gridY){
@@ -82,10 +91,6 @@ void Gem::setNextPos(int gridY){
 #pragma mark Game Cycle:
 
 void Gem::render(){
-    if(willBeDeleted){
-        //hacer algo antes
-        //willBeDeleted = false;
-    }
     if(selected){
         string name = "Selected";
         string minuteName = spriteName+name;
@@ -112,7 +117,12 @@ void Gem::update(){
         }
     }
     else if(willBeDeleted){
-        willBeDeleted = false;
+        width-=3;
+        x+=1.5;
+        y+=1.5;
+        if(width<5){
+            willBeDeleted = false;
+        }
     }
 
 }
@@ -160,6 +170,27 @@ void Gem::setSelected(bool isSelected){
 
 string Gem::getType(){
     return spriteName;
+}
+
+bool Gem::isOpponent(){
+    return opponent;
+}
+
+int Gem::getValue(int sequenceNumber){
+    int position = sequenceNumber-3;
+    if(getType() == "Referee"){
+        return REFEREE_TIME_VALUES[position];
+    }
+    else if (getType() == "Goalkeeper"){
+        return GOALKEEPER_VALUES[position];
+    }
+    else if(getType() == "Ball"){
+        return BALL_VALUES[position];
+    }
+    else if(opponent){
+        return OPPONENT_VALUES[position];
+    }
+    return PLAYER_VALUES[position];
 }
 
 #pragma mark Destructor:

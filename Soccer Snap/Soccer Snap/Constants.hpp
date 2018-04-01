@@ -25,9 +25,15 @@ public:
     constexpr static const int FIELD_LINE_WIDTH = 13;
     
     constexpr static const int GEMS_PER_ROW = 8;
-    constexpr static const int TARGET_POINTS = 1500;
-    constexpr static const int MATCH_TIME = 120;
+    constexpr static const int TARGET_POINTS = 2000;
+    constexpr static const int MATCH_TIME = 90;
     
     constexpr static const float GEM_VELOCITY = 3.7;
+    
+    
+
+
+
+    
 };
 #endif /* Constants_hpp */

@@ -43,6 +43,7 @@ public:
     
     void addPoints(int pointsToAdd);
     void addOpponentPoints(int pointsToAdd);
+    void addTime (int timeToAdd);
     
     void updateField();
     void handleFieldEvent(EventType e);
@@ -60,9 +61,11 @@ public:
     Button* pauseButton;
     Button* playButton;
     
-private:
     Output *output;
     Input * input;
+
+private:
+    
     int points;
     int opponentPoints;
     bool active;

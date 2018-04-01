@@ -15,13 +15,13 @@ GameScene::GameScene(Output* o, Input* i){
     output = o;
     input = i;
     active = true;
-    points = 0;
-    opponentPoints = Constants::TARGET_POINTS;
+    state = new GameLoading();
     srand(time(NULL));
 }
 
 void GameScene::load(){
-    state = new GameLoading();
+    points = 0;
+    opponentPoints = Constants::TARGET_POINTS;
     loadTimer();
     loadGUIElements();
     loadField();
@@ -34,19 +34,20 @@ void GameScene::loadTimer(){
 void GameScene::loadGUIElements(){
     string playButtonSprites[3]={"PlayButtonOut","PlayButtonOver","PlayButtonIn"};
     playButton = new Button(output,input,playButtonSprites);
-    playButton->setPosition(342, 23);
+    Point buttonSize = output->getSpriteDimensions("PlayButtonOut");
+    playButton->setPosition((Constants::GAME_SCREEN_WIDTH-Constants::FIELD_WIDTH)/2+Constants::FIELD_WIDTH - buttonSize.x - 20, 23);
     
     string pauseButtonSprites[3]={"PauseButtonOut","PauseButtonOver","PauseButtonIn"};
     pauseButton = new Button(output,input,pauseButtonSprites);
-    pauseButton->setPosition(342, 23);
+    pauseButton->setPosition((Constants::GAME_SCREEN_WIDTH-Constants::FIELD_WIDTH)/2+Constants::FIELD_WIDTH - buttonSize.x - 20, 23);
     
     string menuButtonSprites[3]={"MenuButtonOut","MenuButtonOver","MenuButtonIn"};
     homeButton = new Button(output,input,menuButtonSprites);
-    homeButton->setPosition(272, 23);
+    homeButton->setPosition((Constants::GAME_SCREEN_WIDTH-Constants::FIELD_WIDTH)/2+ 20, 23);
 }
 
 void GameScene::loadField(){
-    field = new Field(output, input);
+    field = new Field(output, input,this);
     field->load(selectedCountry,opponentCountry);
 }
 
@@ -132,6 +133,10 @@ void GameScene::addOpponentPoints(int pointsToAdd){
     opponentPoints += pointsToAdd;
 }
 
+void GameScene::addTime(int timeToAdd){
+    gameTimer->addTime(timeToAdd);
+}
+
 void GameScene::hideEndAnimation(){
     active = false;
 }
@@ -198,16 +203,17 @@ void GameScene::renderImages(){
     output->addSprite("Board", 351, 645, 144,63);
     output->addSprite("Board", 577, 645, 144,63);
     output->addSprite("VsLabel", 521, 686, 34);
-    output->addSprite("Goalkeeper", 726, 18, 64);
 
     output->addSprite("StadiumFloor", -55, 0, 265,720);
     output->addSprite("StadiumFloor", 862, 0,265, 720,180);
     field->render();
     Point layerSize = output->getSpriteDimensions("BackgroundLayer");
-    output->addSprite("BackgroundLayer", (Constants::GAME_SCREEN_WIDTH-Constants::FIELD_WIDTH)/2, (Constants::GAME_SCREEN_HEIGHT-Constants::FIELD_WIDTH)/2-layerSize.y, layerSize.x);
-
-    output->addSprite("UruguayFans", -55, 0, 265,720);
-    output->addSprite("UruguayFans", 862, 0,265, 720,180);
+    output->addSprite("BackgroundLayer", (Constants::GAME_SCREEN_WIDTH-Constants::FIELD_WIDTH)/2, (Constants::GAME_SCREEN_HEIGHT-Constants::FIELD_WIDTH)/2-layerSize.y+Constants::FIELD_LINE_WIDTH, layerSize.x);
+    string fans = "Fans";
+    string myFans = selectedCountry+fans;
+    string opponentFans = opponentCountry + fans;
+    output->addSprite(myFans, -55, 0, 265,720);
+    output->addSprite(opponentFans, 862, 0,265, 720,180);
     
     string name = "Menu";
     string countryString = selectedCountry+name;

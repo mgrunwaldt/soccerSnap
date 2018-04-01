@@ -15,6 +15,7 @@
 
 
 
+
 class Gem: public GameObject{
 
 
@@ -47,6 +48,11 @@ public:
     
     int boardX;
     int boardY;
+    
+    int getValue(int sequenceNumber);
+    void setOpponent();
+    bool isOpponent();
+    
 private:
     Output* outputFacade;
     float x;
@@ -61,6 +67,10 @@ private:
     bool moving;
     bool willBeDeleted;
     bool goingToFirstStop;
+    bool opponent;
+    
+    
+   
     
     
     

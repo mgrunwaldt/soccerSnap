@@ -20,6 +20,12 @@ public:
     void render(GameScene &g);
 
 private:
+    int boardY = Constants::GAME_SCREEN_HEIGHT;
+    Point boardSize;
+    Button* playAgainButton;
+    Button* homeButton;
+    bool boardUp = false;
+    bool buttonsInitialized = false;
 };
 
 #endif /* GameFinished_hpp */
